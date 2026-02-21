@@ -57,7 +57,7 @@ export default function App() {
               fullScreen: false,
               particles: {
                 number: { value: 35, density: { enable: true, area: 900 } },
-                color: { value: ['#B8953F', '#C9A655', '#D4B76A', '#9A8344', '#C9A88A'] },
+                color: { value: ['#8A7650', '#9E8D62', '#DBCEA5', '#8E977D', '#6E5F40'] },
                 shape: { type: 'circle' },
                 opacity: { value: { min: 0.02, max: 0.2 }, animation: { enable: true, speed: 0.2, minimumValue: 0.01 } },
                 size: { value: { min: 0.5, max: 2.5 }, animation: { enable: true, speed: 0.6, minimumValue: 0.3 } },
@@ -80,7 +80,7 @@ export default function App() {
               fullScreen: false,
               particles: {
                 number: { value: 40, density: { enable: true, area: 1100 } },
-                color: { value: ['#B8953F', '#C9A655', '#9A8344'] },
+                color: { value: ['#8A7650', '#9E8D62', '#8E977D'] },
                 shape: { type: 'circle' },
                 opacity: { value: { min: 0.01, max: 0.08 }, animation: { enable: true, speed: 0.12, minimumValue: 0.005 } },
                 size: { value: { min: 0.6, max: 2 }, animation: { enable: true, speed: 0.35, minimumValue: 0.25 } },
