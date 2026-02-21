@@ -1682,27 +1682,6 @@
         <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-        <a href="#countdown" data-ar="العد التنازلي" data-en="Countdown">العد التنازلي</a>
-        <a href="#details" data-ar="التفاصيل" data-en="Details">التفاصيل</a>
-        <a href="#rsvp" data-ar="تأكيد الحضور" data-en="RSVP">تأكيد الحضور</a>
-    </nav>
-
-    <!-- Hamburger Menu (Mobile) -->
-    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
-        <a href="#countdown" data-ar="العد التنازلي" data-en="Countdown">العد التنازلي</a>
-        <a href="#details" data-ar="التفاصيل" data-en="Details">التفاصيل</a>
-        <a href="#rsvp" data-ar="تأكيد الحضور" data-en="RSVP">تأكيد الحضور</a>
-    </div>
-
     <!-- Hero -->
     <section class="hero" id="home">
         <div class="particles" id="particles"></div>
@@ -1979,45 +1958,14 @@
 
         fadeElements.forEach(el => observer.observe(el));
 
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
+        // Lang toggle scroll effect
         const langToggle = document.getElementById('langToggle');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
                 langToggle.classList.add('scrolled');
             } else {
-                navbar.classList.remove('scrolled');
                 langToggle.classList.remove('scrolled');
             }
-        });
-
-        // Smooth scroll for nav links
-        document.querySelectorAll('.navbar a, .mobile-menu a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobileMenu');
-                const hamburger = document.getElementById('hamburgerBtn');
-                if (mobileMenu.classList.contains('open')) {
-                    mobileMenu.classList.remove('open');
-                    hamburger.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        });
-
-        // Hamburger menu toggle
-        document.getElementById('hamburgerBtn').addEventListener('click', () => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburger = document.getElementById('hamburgerBtn');
-            mobileMenu.classList.toggle('open');
-            hamburger.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
         });
 
         // ============================================
