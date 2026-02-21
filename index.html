@@ -1777,39 +1777,13 @@
             <div class="form-group">
                 <input type="text" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name" placeholder="الاسم الكامل" required>
             </div>
-            <div class="form-group">
-                <select required id="attendSelect">
-                    <option value="" disabled selected data-ar="هل ستحضر؟" data-en="Will you attend?">هل ستحضر؟</option>
-                    <option value="yes" data-ar="نعم، بكل سرور!" data-en="Yes, with pleasure!">نعم، بكل سرور!</option>
-                    <option value="no" data-ar="للأسف لن أتمكن من الحضور" data-en="Unfortunately, I cannot attend">للأسف لن أتمكن من الحضور</option>
-                </select>
-            </div>
-            <button type="submit" class="rsvp-btn"><span data-ar="إرسال الرد" data-en="Send Response">إرسال الرد</span></button>
+            <button type="submit" class="rsvp-btn"><span data-ar="تأكيد الحضور" data-en="Confirm Attendance">تأكيد الحضور</span></button>
         </form>
         <div class="rsvp-success" id="rsvpSuccess">
             <h3 data-ar="شكراً لكم!" data-en="Thank You!">شكراً لكم!</h3>
             <p data-ar="لقد تلقينا ردكم ونتطلع لرؤيتكم!" data-en="We have received your response and look forward to seeing you!">لقد تلقينا ردكم ونتطلع لرؤيتكم!</p>
         </div>
     </section>
-
-    <!-- Map -->
-    <section class="map-section">
-        <div class="map-container fade-in">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1996.3!2d11.0481!3d59.9714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46417500e4fdb8e5%3A0x0!2sTrondheimsveien%2048F%2C%202007%20Kjeller!5e0!3m2!1sno!2sno!4v1700000000000!5m2!1sno!2sno"
-                allowfullscreen="" 
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-names" data-ar="محمود و رنيم" data-en="Mahmoud & Ranim">محمود و رنيم</div>
-        <div class="footer-date">28 · 03 · 2026</div>
-        <div class="footer-heart">♥</div>
-    </footer>
 
     <script>
         // Language state
@@ -1998,10 +1972,6 @@
 
             const form = e.target;
             const name = form.querySelector('input[type="text"]').value;
-            const attending = form.querySelector('#attendSelect').value;
-
-            // Map attending value
-            const attendingValue = attending === 'yes' ? 'Yes' : 'No';
 
             // Submit to Google Form
             const gForm = document.createElement('form');
@@ -2011,7 +1981,7 @@
 
             const fields = [
                 { name: ENTRY_NAME, value: name },
-                { name: ENTRY_ATTENDING, value: attendingValue }
+                { name: ENTRY_ATTENDING, value: 'Yes' }
             ];
 
             fields.forEach(f => {
