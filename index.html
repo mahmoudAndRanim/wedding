@@ -95,11 +95,13 @@
             visibility: hidden;
         }
 
-        /* Envelope wrapper — fills viewport in portrait */
+        /* Envelope wrapper — rotated 90° clockwise (sideways on portrait screen) */
         .envelope-wrapper {
             position: relative;
-            width: 100%;
-            height: 100%;
+            width: 100vh;
+            height: 100vw;
+            transform: rotate(-90deg);
+            transform-origin: center center;
             overflow: visible;
         }
 
