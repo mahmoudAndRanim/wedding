@@ -450,72 +450,50 @@
             position: relative;
         }
 
-        .details-section::before,
-        .details-section::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='50' r='20' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3C/svg%3E");
-        }
-
-        .details-section::before {
-            top: 2rem;
-            left: 2rem;
-        }
-
-        .details-section::after {
-            bottom: 2rem;
-            right: 2rem;
-        }
-
         .details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            max-width: 800px;
             margin: 0 auto;
+            flex-wrap: wrap;
         }
 
         .detail-card {
             text-align: center;
-            padding: 3rem 2rem;
-            border: 1px solid var(--gold-light);
+            padding: 2.5rem 2.5rem;
+            flex: 1;
+            min-width: 200px;
             position: relative;
-            background: var(--white);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .detail-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(201, 168, 76, 0.1);
-        }
-
-        .detail-card::before {
+        .detail-card:not(:last-child)::after {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            right: 8px;
-            bottom: 8px;
-            border: 1px solid var(--gold-light);
-            opacity: 0.4;
-            pointer-events: none;
+            top: 20%;
+            right: 0;
+            height: 60%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
+        }
+
+        body[dir="ltr"] .detail-card:not(:last-child)::after {
+            right: 0;
+            left: auto;
         }
 
         .detail-icon {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             display: block;
         }
 
         .detail-card h3 {
             font-family: 'Aref Ruqaa', serif;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 400;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
+            color: var(--gold-dark);
+            margin-bottom: 0.6rem;
         }
 
         body[dir="ltr"] .detail-card h3 {
@@ -525,8 +503,8 @@
         .detail-card p {
             font-family: 'Noto Naskh Arabic', serif;
             font-weight: 400;
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.7;
             color: #666;
         }
 
@@ -878,40 +856,19 @@
                 font-size: 2.5rem;
             }
 
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(odd) {
+            .details-grid {
                 flex-direction: column;
-                text-align: center;
-                padding-left: 50px;
-                padding-right: 0;
+                align-items: center;
             }
 
-            body[dir="rtl"] .timeline-item,
-            body[dir="rtl"] .timeline-item:nth-child(odd) {
-                padding-left: 0;
-                padding-right: 50px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            body[dir="rtl"] .timeline-dot {
-                left: auto;
-                right: 20px;
-            }
-
-            body[dir="rtl"] .timeline::before {
-                left: auto;
-                right: 20px;
+            .detail-card:not(:last-child)::after {
+                top: auto;
+                bottom: 0;
+                right: 20%;
+                left: 20%;
+                height: 1px;
+                width: 60%;
+                background: linear-gradient(to right, transparent, var(--gold-light), transparent);
             }
 
             .detail-card {
@@ -1129,32 +1086,31 @@
     <!-- Details -->
     <section class="details-section" id="details">
         <h2 class="section-title fade-in" data-ar="تفاصيل حفل الزفاف" data-en="Wedding Details">تفاصيل حفل الزفاف</h2>
-        <p class="section-subtitle fade-in" data-ar="كل ما تحتاج معرفته" data-en="Everything you need to know">كل ما تحتاج معرفته</p>
         <div class="ornament-divider fade-in">
             <div class="line"></div>
             <span class="diamond">◆</span>
             <div class="line"></div>
         </div>
-        <div class="details-grid">
-            <div class="detail-card fade-in">
+        <div class="details-grid fade-in">
+            <div class="detail-card">
                 <span class="detail-icon">📅</span>
                 <h3 data-ar="التاريخ" data-en="Date">التاريخ</h3>
                 <p data-ar="السبت، ٢٨ مارس ٢٠٢٦" data-en="Saturday, March 28, 2026">السبت، ٢٨ مارس ٢٠٢٦</p>
             </div>
-            <div class="detail-card fade-in">
+            <div class="detail-card">
                 <span class="detail-icon">📍</span>
                 <h3 data-ar="المكان" data-en="Venue">المكان</h3>
                 <p>Trondheimsveien 48F<br>2007 Kjeller</p>
             </div>
-            <div class="detail-card fade-in">
+            <div class="detail-card">
                 <span class="detail-icon">🕐</span>
                 <h3 data-ar="الموعد" data-en="Time">الموعد</h3>
                 <p data-ar="الحفل الساعة ١٥:٠٠<br>العشاء الساعة ١٧:٠٠" data-en="Ceremony at 15:00<br>Dinner at 17:00">الحفل الساعة ١٥:٠٠<br>العشاء الساعة ١٧:٠٠</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3rem;">
+        <div style="text-align: center; margin-top: 2.5rem;">
             <div class="adults-only-badge fade-in">
-                <p data-ar="🚫 جنّة الأطفال منازلهم 🚫" data-en="🚫 Adults Only Event 🚫">🚫 جنّة الأطفال منازلهم 🚫</p>
+                <p data-ar="جنّة الأطفال منازلهم" data-en="Adults Only Event">جنّة الأطفال منازلهم</p>
                 <span class="badge-sub" data-ar="نرجو عدم اصطحاب الأطفال" data-en="We kindly request no children attend">نرجو عدم اصطحاب الأطفال</span>
             </div>
         </div>
