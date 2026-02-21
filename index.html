@@ -1805,16 +1805,6 @@
                     <option value="no" data-ar="للأسف لن أتمكن من الحضور" data-en="Unfortunately, I cannot attend">للأسف لن أتمكن من الحضور</option>
                 </select>
             </div>
-            <div class="form-group">
-                <select id="guestSelect">
-                    <option value="" disabled selected data-ar="عدد الضيوف" data-en="Number of guests">عدد الضيوف</option>
-                    <option value="1" data-ar="شخص واحد" data-en="1 person">شخص واحد</option>
-                    <option value="2" data-ar="شخصان" data-en="2 people">شخصان</option>
-                    <option value="3" data-ar="٣ أشخاص" data-en="3 people">٣ أشخاص</option>
-                    <option value="4" data-ar="٤ أشخاص" data-en="4 people">٤ أشخاص</option>
-                    <option value="5" data-ar="٥ أشخاص" data-en="5 people">٥ أشخاص</option>
-                </select>
-            </div>
             <button type="submit" class="rsvp-btn"><span data-ar="إرسال الرد" data-en="Send Response">إرسال الرد</span></button>
         </form>
         <div class="rsvp-success" id="rsvpSuccess">
@@ -2061,7 +2051,6 @@
             const form = e.target;
             const name = form.querySelector('input[type="text"]').value;
             const attending = form.querySelector('#attendSelect').value;
-            const guests = form.querySelector('#guestSelect').value;
 
             // Map attending value
             const attendingValue = attending === 'yes' ? 'Yes' : 'No';
@@ -2074,8 +2063,7 @@
 
             const fields = [
                 { name: ENTRY_NAME, value: name },
-                { name: ENTRY_ATTENDING, value: attendingValue },
-                { name: ENTRY_GUESTS, value: guests }
+                { name: ENTRY_ATTENDING, value: attendingValue }
             ];
 
             fields.forEach(f => {
