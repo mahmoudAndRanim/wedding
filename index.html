@@ -7,6 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=block" rel="stylesheet">
+    <!-- GSAP for professional animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <!-- tsParticles for luxury gold dust -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -68,25 +73,6 @@
             background: radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(0,0,0,0.06) 100%);
             pointer-events: none;
             z-index: 10002;
-        }
-
-        /* Vertical slide-up opening */
-        .envelope-overlay.sliding-up {
-            animation: envelopeOpenVertical 1.4s cubic-bezier(0.4, 0, 0.15, 1) forwards;
-        }
-
-        @keyframes envelopeOpenVertical {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            60% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
         }
 
         .envelope-overlay.done {
@@ -251,7 +237,7 @@
             clip-path: polygon(100% 0%, 0% 42%, 0% 58%, 100% 100%);
         }
 
-        /* ===== TOP FLAP — the triangular flap (3D animated) ===== */
+        /* ===== TOP FLAP — the triangular flap (3D animated by GSAP) ===== */
         .envelope-flap-top {
             position: absolute;
             top: 0;
@@ -261,11 +247,6 @@
             transform-origin: top center;
             transform-style: preserve-3d;
             z-index: 15;
-            transition: transform 1s cubic-bezier(0.4, 0.0, 0.15, 1);
-        }
-
-        .envelope-flap-top.opened {
-            transform: rotateX(-178deg);
         }
 
         .flap-face {
@@ -338,14 +319,13 @@
             height: 8px;
             background: radial-gradient(ellipse, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.04) 40%, transparent 75%);
             z-index: 14;
-            transition: opacity 0.5s ease;
         }
 
         .flap-crease-shadow.hidden {
             opacity: 0;
         }
 
-        /* ===== CARD inside envelope ===== */
+        /* ===== CARD inside envelope (GSAP-animated) ===== */
         .envelope-card {
             position: absolute;
             top: 15%;
@@ -365,13 +345,6 @@
                 0 0 0 1px rgba(200, 180, 140, 0.12);
             transform: translateY(0);
             opacity: 0;
-            transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        opacity 0.5s ease;
-        }
-
-        .envelope-card.visible {
-            transform: translateY(-55%);
-            opacity: 1;
         }
 
         /* Fine decorative border on card */
@@ -579,15 +552,13 @@
             z-index: 5;
         }
 
-        /* ===== SEAL BREAK ANIMATION ===== */
+        /* ===== SEAL BREAK — GSAP handles animation, CSS defines initial states ===== */
         .seal-half {
             position: absolute;
             top: 0;
             width: 50%;
             height: 100%;
             overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                        opacity 0.4s ease 0.15s;
         }
 
         .seal-half-left {
@@ -615,27 +586,6 @@
         .seal-half-left .seal-half-inner { left: 0; }
         .seal-half-right .seal-half-inner { right: 0; }
 
-        .envelope-seal.breaking .seal-body,
-        .envelope-seal.breaking .seal-rim {
-            opacity: 0;
-            transition: opacity 0.12s ease;
-        }
-
-        .envelope-seal.breaking .seal-inner-ring {
-            opacity: 0;
-            transition: opacity 0.12s ease;
-        }
-
-        .envelope-seal.breaking .seal-half-left {
-            transform: translateX(-10px) rotate(-15deg) translateY(8px);
-            opacity: 0;
-        }
-
-        .envelope-seal.breaking .seal-half-right {
-            transform: translateX(10px) rotate(15deg) translateY(8px);
-            opacity: 0;
-        }
-
         .envelope-seal.breaking { pointer-events: none; }
 
         /* Tap hint — ultra subtle, minimal UI */
@@ -654,6 +604,16 @@
             opacity: 0;
         }
 
+        /* Seal idle breathing animation — subtle scale pulse */
+        .seal-breathing {
+            animation: sealBreathe 3s ease-in-out infinite;
+        }
+
+        @keyframes sealBreathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.03); }
+        }
+
         .fonts-loaded .seal-hint {
             animation: sealHintPulse 4s ease-in-out infinite 3s;
         }
@@ -663,7 +623,7 @@
             50% { opacity: 0.4; }
         }
 
-        /* ===== AMBIENT PARTICLES ===== */
+        /* ===== AMBIENT PARTICLES (tsParticles container) ===== */
         .envelope-particles {
             position: fixed;
             top: 0;
@@ -677,23 +637,6 @@
 
         .envelope-overlay.done .envelope-particles {
             display: none;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #C6A75E;
-            border-radius: 50%;
-            opacity: 0;
-            animation: sparkleFloat linear infinite;
-        }
-
-        @keyframes sparkleFloat {
-            0% { opacity: 0; transform: translateY(0) scale(0); }
-            15% { opacity: 0.2; transform: translateY(-12px) scale(1); }
-            85% { opacity: 0.1; }
-            100% { opacity: 0; transform: translateY(-80px) scale(0); }
         }
 
         /* No responsive envelope scene overrides needed — it's 100vw/100vh */
@@ -2193,10 +2136,16 @@
             // Update preloader text (not needed anymore, curtain intro is static)
         }
 
-        // Envelope Intro — Fullscreen
+        // Envelope Intro — GSAP Professional Animation
         window.addEventListener('load', () => {
             const overlay = document.getElementById('envelopeOverlay');
             const seal = document.getElementById('envelopeSeal');
+            const sealBody = seal.querySelector('.seal-body');
+            const sealRim = seal.querySelector('.seal-rim');
+            const sealInnerRing = seal.querySelector('.seal-inner-ring');
+            const sealHalfLeft = seal.querySelector('.seal-half-left');
+            const sealHalfRight = seal.querySelector('.seal-half-right');
+            const sealHint = seal.querySelector('.seal-hint');
             const flap = document.getElementById('envelopeFlap');
             const flapShadow = document.getElementById('flapShadow');
             const card = document.getElementById('envelopeCard');
@@ -2221,57 +2170,154 @@
                 document.body.classList.add('fonts-loaded');
             }, 2000);
 
-            // Create subtle sparkles
-            for (let i = 0; i < 12; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.width = (Math.random() * 2 + 1) + 'px';
-                sparkle.style.height = sparkle.style.width;
-                sparkle.style.animationDuration = (Math.random() * 5 + 4) + 's';
-                sparkle.style.animationDelay = (Math.random() * 5) + 's';
-                particlesContainer.appendChild(sparkle);
+            // Initialize tsParticles — luxury gold dust
+            if (typeof tsParticles !== 'undefined') {
+                tsParticles.load("envelopeParticles", {
+                    fullScreen: false,
+                    particles: {
+                        number: { value: 30, density: { enable: true, area: 800 } },
+                        color: { value: ["#C6A75E", "#E5C97A", "#D4B560", "#B89848", "#A08E68"] },
+                        shape: { type: "circle" },
+                        opacity: {
+                            value: { min: 0.05, max: 0.25 },
+                            animation: { enable: true, speed: 0.4, minimumValue: 0.03, sync: false }
+                        },
+                        size: {
+                            value: { min: 1, max: 3.5 },
+                            animation: { enable: true, speed: 1.5, minimumValue: 0.5, sync: false }
+                        },
+                        move: {
+                            enable: true,
+                            speed: { min: 0.15, max: 0.6 },
+                            direction: "top",
+                            outModes: { default: "out" },
+                            random: true,
+                            straight: false
+                        },
+                        wobble: { enable: true, distance: 8, speed: 3 },
+                        tilt: { enable: true, direction: "random", value: { min: 0, max: 360 }, animation: { enable: true, speed: 5 } },
+                        life: {
+                            duration: { sync: false, value: { min: 5, max: 12 } },
+                            count: 0
+                        }
+                    },
+                    detectRetina: true
+                });
             }
 
-            // Sequential open animation
+            // Seal breathing animation
+            seal.classList.add('seal-breathing');
+
+            // GSAP Timeline — professional envelope opening sequence
             function openEnvelope() {
                 if (isOpening) return;
                 isOpening = true;
 
-                // STEP 1: Tap feedback — subtle scale pulse on overlay (100-150ms)
-                overlay.style.transition = 'transform 0.08s ease';
-                overlay.style.transform = 'scale(0.985)';
-                setTimeout(() => {
-                    overlay.style.transform = 'scale(1)';
-                    overlay.style.transition = 'transform 0.12s ease, opacity 1.2s ease';
-                }, 120);
+                // Stop seal breathing
+                seal.classList.remove('seal-breathing');
+                if (sealHint) gsap.to(sealHint, { opacity: 0, duration: 0.15 });
 
-                // STEP 2: Wax seal breaks apart (300-500ms)
-                setTimeout(() => {
-                    seal.classList.add('breaking');
-                }, 300);
+                const tl = gsap.timeline({
+                    defaults: { ease: "power3.out" }
+                });
 
-                // STEP 3: Flap opens with 3D perspective rotation (600-900ms)
-                setTimeout(() => {
-                    flap.classList.add('opened');
-                    flapShadow.classList.add('hidden');
-                }, 900);
+                // STEP 1: Tap feedback — satisfying scale pulse
+                tl.to(overlay, {
+                    scale: 0.985,
+                    duration: 0.08,
+                    ease: "power2.in"
+                })
+                .to(overlay, {
+                    scale: 1,
+                    duration: 0.15,
+                    ease: "elastic.out(1.2, 0.5)"
+                })
 
-                // STEP 4: Card slides up elegantly (500-800ms)
-                setTimeout(() => {
-                    card.classList.add('visible');
-                }, 1700);
+                // STEP 2: Seal shakes before breaking (tension build)
+                .to(seal, {
+                    x: -3, duration: 0.04, ease: "none"
+                }, "+=0.1")
+                .to(seal, {
+                    x: 3, duration: 0.04, ease: "none"
+                })
+                .to(seal, {
+                    x: -4, duration: 0.04, ease: "none"
+                })
+                .to(seal, {
+                    x: 4, duration: 0.04, ease: "none"
+                })
+                .to(seal, {
+                    x: -2, duration: 0.04, ease: "none"
+                })
+                .to(seal, {
+                    x: 0, duration: 0.04, ease: "none"
+                })
 
-                // STEP 5: Entire envelope slides up vertically off screen
-                setTimeout(() => {
-                    overlay.classList.add('sliding-up');
-                }, 3200);
+                // STEP 3: Seal breaks — body fades, halves fly apart
+                .add(() => { seal.classList.add('breaking'); }, "+=0.05")
+                .to(sealBody, {
+                    opacity: 0,
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: "power2.out"
+                })
+                .to(sealRim, {
+                    opacity: 0,
+                    duration: 0.15,
+                    ease: "power2.out"
+                }, "<")
+                .to(sealInnerRing, {
+                    opacity: 0,
+                    duration: 0.15,
+                    ease: "power2.out"
+                }, "<")
+                .to(sealHalfLeft, {
+                    x: -20,
+                    y: 15,
+                    rotation: -25,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "<0.05")
+                .to(sealHalfRight, {
+                    x: 20,
+                    y: 15,
+                    rotation: 25,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                }, "<")
 
-                // STEP 6: Final cleanup after slide animation completes
-                setTimeout(() => {
+                // STEP 4: Flap opens with realistic 3D perspective
+                .to(flap, {
+                    rotateX: -178,
+                    duration: 1.4,
+                    ease: "power2.inOut"
+                }, "-=0.3")
+                .to(flapShadow, {
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: "power2.out"
+                }, "<0.2")
+
+                // STEP 5: Card slides up smoothly — reveals names
+                .to(card, {
+                    y: "-55%",
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: "power3.out"
+                }, "-=0.5")
+
+                // STEP 6: Brief reading pause, then envelope slides up off screen
+                .to(overlay, {
+                    y: "-100vh",
+                    duration: 1.6,
+                    ease: "power4.inOut"
+                }, "+=1.2")
+                .add(() => {
                     overlay.classList.add('done');
-                }, 4800);
+                    overlay.style.pointerEvents = 'none';
+                });
             }
 
             // Tap anywhere on envelope or seal
