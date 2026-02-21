@@ -102,16 +102,18 @@
             );
         }
 
-        /* Gold edge on curtains */
+        /* Gold edge on curtains — only visible once opening starts */
         .curtain-left::after {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 3px;
+            width: 2px;
             height: 100%;
             background: linear-gradient(to bottom, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
             box-shadow: 0 0 15px rgba(201, 168, 76, 0.4), 0 0 30px rgba(201, 168, 76, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .curtain-right::after {
@@ -119,10 +121,17 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 3px;
+            width: 2px;
             height: 100%;
             background: linear-gradient(to bottom, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
             box-shadow: 0 0 15px rgba(201, 168, 76, 0.4), 0 0 30px rgba(201, 168, 76, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .curtain-overlay.open .curtain-left::after,
+        .curtain-overlay.open .curtain-right::after {
+            opacity: 1;
         }
 
         /* Curtain ornamental borders */
@@ -1528,6 +1537,12 @@
             }
             .navbar a {
                 font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                display: none !important;
             }
         }
 
