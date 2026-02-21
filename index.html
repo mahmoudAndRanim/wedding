@@ -704,11 +704,6 @@
             color: var(--white);
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
         .rsvp-btn {
             display: inline-block;
             padding: 1rem 3rem;
@@ -1249,10 +1244,13 @@
                     <option value="2" data-ar="شخصان" data-en="2 people">شخصان</option>
                     <option value="3" data-ar="٣ أشخاص" data-en="3 people">٣ أشخاص</option>
                     <option value="4" data-ar="٤ أشخاص" data-en="4 people">٤ أشخاص</option>
+                    <option value="5" data-ar="٥ أشخاص" data-en="5 people">٥ أشخاص</option>
+                    <option value="6" data-ar="٦ أشخاص" data-en="6 people">٦ أشخاص</option>
+                    <option value="7" data-ar="٧ أشخاص" data-en="7 people">٧ أشخاص</option>
+                    <option value="8" data-ar="٨ أشخاص" data-en="8 people">٨ أشخاص</option>
+                    <option value="9" data-ar="٩ أشخاص" data-en="9 people">٩ أشخاص</option>
+                    <option value="10" data-ar="١٠ أشخاص" data-en="10 people">١٠ أشخاص</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <textarea data-placeholder-ar="حساسية طعام أو رسائل أخرى (اختياري)" data-placeholder-en="Food allergies or other messages (optional)" placeholder="حساسية طعام أو رسائل أخرى (اختياري)"></textarea>
             </div>
             <button type="submit" class="rsvp-btn"><span data-ar="إرسال الرد" data-en="Send Response">إرسال الرد</span></button>
         </form>
@@ -1307,7 +1305,11 @@
 
             // Update all translatable elements
             document.querySelectorAll('[data-ar][data-en]').forEach(el => {
-                el.innerHTML = el.getAttribute('data-' + currentLang);
+                if (el.tagName === 'OPTION') {
+                    el.textContent = el.getAttribute('data-' + currentLang);
+                } else {
+                    el.innerHTML = el.getAttribute('data-' + currentLang);
+                }
             });
 
             // Update placeholders
@@ -1401,9 +1403,67 @@
             });
         });
 
+        // ============================================
+        // GOOGLE FORM CONFIGURATION
+        // Create a Google Form with these 3 fields:
+        //   1. Name (Short answer)
+        //   2. Attending (Multiple choice: Yes / No)
+        //   3. Number of guests (Dropdown: 1-10)
+        // Then get the form's action URL and entry IDs:
+        //   - Open the form, click 3 dots > Get pre-filled link
+        //   - Fill in dummy data, click Get Link
+        //   - The URL will contain entry.XXXXXXX= for each field
+        // Replace the values below:
+        // ============================================
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+        const ENTRY_NAME = 'entry.XXXXXXXXX';      // Replace with your Name field entry ID
+        const ENTRY_ATTENDING = 'entry.XXXXXXXXX';  // Replace with your Attending field entry ID  
+        const ENTRY_GUESTS = 'entry.XXXXXXXXX';     // Replace with your Number of guests entry ID
+
+        // Hidden iframe for Google Form submission
+        const gFormIframe = document.createElement('iframe');
+        gFormIframe.name = 'hidden_iframe';
+        gFormIframe.id = 'hidden_iframe';
+        gFormIframe.style.display = 'none';
+        document.body.appendChild(gFormIframe);
+
         // RSVP Form
         document.getElementById('rsvpForm').addEventListener('submit', (e) => {
             e.preventDefault();
+
+            const form = e.target;
+            const name = form.querySelector('input[type="text"]').value;
+            const attending = form.querySelector('#attendSelect').value;
+            const guests = form.querySelector('#guestSelect').value;
+
+            // Map attending value
+            const attendingValue = attending === 'yes' ? 'Yes' : 'No';
+
+            // Submit to Google Form
+            const gForm = document.createElement('form');
+            gForm.method = 'POST';
+            gForm.action = GOOGLE_FORM_URL;
+            gForm.target = 'hidden_iframe';
+
+            const fields = [
+                { name: ENTRY_NAME, value: name },
+                { name: ENTRY_ATTENDING, value: attendingValue },
+                { name: ENTRY_GUESTS, value: guests }
+            ];
+
+            fields.forEach(f => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = f.name;
+                input.value = f.value;
+                gForm.appendChild(input);
+            });
+
+            document.body.appendChild(gForm);
+            gForm.submit();
+            document.body.removeChild(gForm);
+
+            // Show success
             document.getElementById('rsvpForm').style.display = 'none';
             document.getElementById('rsvpSuccess').classList.add('show');
         });
