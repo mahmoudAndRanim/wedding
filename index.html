@@ -1888,15 +1888,20 @@
             const overlay = document.getElementById('curtainOverlay');
             const sparklesContainer = document.getElementById('introSparkles');
 
-            // Wait for fonts to load before starting animations
-            document.fonts.ready.then(() => {
+            // Wait for Aref Ruqaa font specifically before starting animations
+            Promise.all([
+                document.fonts.load('400 1rem "Aref Ruqaa"'),
+                document.fonts.load('400 1rem "Montserrat"')
+            ]).then(() => {
+                document.body.classList.add('fonts-loaded');
+            }).catch(() => {
                 document.body.classList.add('fonts-loaded');
             });
 
-            // Fallback: start anyway after 1s if fonts are slow
+            // Fallback: start anyway after 2s if fonts are very slow
             setTimeout(() => {
                 document.body.classList.add('fonts-loaded');
-            }, 1000);
+            }, 2000);
 
             // Create sparkles
             for (let i = 0; i < 50; i++) {
