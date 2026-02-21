@@ -1080,42 +1080,38 @@
         }
 
         /* RSVP Section */
-        .rsvp-section {
-            background: linear-gradient(135deg, var(--soft-black) 0%, #2a1f0e 50%, var(--soft-black) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
+        .hero-rsvp {
+            margin-top: 2.5rem;
+            width: 100%;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .rsvp-section .section-title {
-            color: var(--gold-light);
-        }
-
-        .rsvp-section .section-subtitle {
-            color: var(--gold);
-        }
-
-        .rsvp-section .ornament-divider .line {
-            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-        }
-
-        .rsvp-form {
-            max-width: 500px;
-            margin: 0 auto;
+        .hero-rsvp .rsvp-form {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero-rsvp .rsvp-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
 
         .form-group {
             position: relative;
+            flex: 1;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 1rem 1.5rem;
+            padding: 0.85rem 1.2rem;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(201, 168, 76, 0.3);
             color: var(--white);
@@ -1152,18 +1148,19 @@
 
         .rsvp-btn {
             display: inline-block;
-            padding: 1rem 3rem;
+            padding: 0.85rem 2.2rem;
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--gold);
             font-family: 'Noto Naskh Arabic', serif;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            align-self: center;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         body[dir="ltr"] .rsvp-btn {
@@ -1739,32 +1736,23 @@
                 <span data-ar="رنيم" data-en="Ranim">رنيم</span>
             </h1>
             <p class="wedding-date-hero" data-ar="٢٨ · مارس · ٢٠٢٦" data-en="28 · March · 2026">٢٨ · مارس · ٢٠٢٦</p>
+            <div class="hero-rsvp" id="rsvp">
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <input type="text" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name" placeholder="الاسم الكامل" required>
+                    </div>
+                    <button type="submit" class="rsvp-btn"><span data-ar="تأكيد الحضور" data-en="Confirm">تأكيد الحضور</span></button>
+                </form>
+                <div class="rsvp-success" id="rsvpSuccess">
+                    <h3 data-ar="شكراً لكم!" data-en="Thank You!">شكراً لكم!</h3>
+                    <p data-ar="لقد تلقينا ردكم ونتطلع لرؤيتكم!" data-en="We have received your response and look forward to seeing you!">لقد تلقينا ردكم ونتطلع لرؤيتكم!</p>
+                </div>
+            </div>
             <div class="hero-ornament" style="margin-top: 2rem;"></div>
         </div>
         <div class="scroll-indicator">
             <span>↓</span>
             <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="rsvp-section" id="rsvp">
-        <h2 class="section-title fade-in" data-ar="تأكيد الحضور" data-en="RSVP">تأكيد الحضور</h2>
-        <p class="section-subtitle fade-in" data-ar="يسعدنا الاحتفال معكم" data-en="We look forward to celebrating with you">يسعدنا الاحتفال معكم</p>
-        <div class="ornament-divider fade-in">
-            <div class="line"></div>
-            <span class="diamond" style="color: var(--gold-light);">◆</span>
-            <div class="line"></div>
-        </div>
-        <form class="rsvp-form fade-in" id="rsvpForm">
-            <div class="form-group">
-                <input type="text" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name" placeholder="الاسم الكامل" required>
-            </div>
-            <button type="submit" class="rsvp-btn"><span data-ar="تأكيد الحضور" data-en="Confirm Attendance">تأكيد الحضور</span></button>
-        </form>
-        <div class="rsvp-success" id="rsvpSuccess">
-            <h3 data-ar="شكراً لكم!" data-en="Thank You!">شكراً لكم!</h3>
-            <p data-ar="لقد تلقينا ردكم ونتطلع لرؤيتكم!" data-en="We have received your response and look forward to seeing you!">لقد تلقينا ردكم ونتطلع لرؤيتكم!</p>
         </div>
     </section>
 
