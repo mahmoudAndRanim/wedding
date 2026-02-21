@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahmoud & Ranim – Bryllupsinvitasjon</title>
+    <title>محمود و رنيم – دعوة زفاف</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@200;300;400;500;600&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -31,10 +31,14 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Noto Naskh Arabic', 'Amiri', serif;
             background-color: var(--cream);
             color: var(--charcoal);
             overflow-x: hidden;
+        }
+
+        body[dir="ltr"] {
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Preloader */
@@ -58,7 +62,7 @@
         }
 
         .preloader-text {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Aref Ruqaa', serif;
             font-size: 3rem;
             color: var(--gold);
             animation: pulse 1.5s ease-in-out infinite;
@@ -67,6 +71,47 @@
         @keyframes pulse {
             0%, 100% { opacity: 0.4; transform: scale(0.98); }
             50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        body[dir="ltr"] .lang-toggle {
+            right: auto;
+            left: 1.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn:hover {
+            background: var(--gold);
+            color: var(--soft-black);
+        }
+
+        .navbar.scrolled ~ .lang-toggle .lang-btn,
+        .lang-toggle.scrolled .lang-btn {
+            background: rgba(201, 168, 76, 0.2);
         }
 
         /* Hero Section */
@@ -147,49 +192,101 @@
             padding: 0 10px;
         }
 
+        .bismillah {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.6rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
         .save-the-date {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 200;
-            font-size: 0.85rem;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
             color: var(--gold-light);
             margin-bottom: 1.5rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.5s;
         }
 
+        body[dir="ltr"] .save-the-date {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            font-size: 0.85rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+        }
+
         .couple-names {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Aref Ruqaa', serif;
             font-size: clamp(3rem, 8vw, 6.5rem);
             color: var(--gold);
-            line-height: 1.2;
+            line-height: 1.4;
             margin-bottom: 0.5rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.8s;
             text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
         }
 
+        body[dir="ltr"] .couple-names {
+            font-family: 'Great Vibes', cursive;
+            line-height: 1.2;
+        }
+
         .couple-and {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 300;
-            font-style: italic;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
             color: var(--gold-light);
             margin: 0.5rem 0;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1s;
         }
 
-        .wedding-date-hero {
-            font-family: 'Montserrat', sans-serif;
+        body[dir="ltr"] .couple-and {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
             font-weight: 300;
+            font-style: italic;
+        }
+
+        .wedding-date-hero {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
             font-size: 1.1rem;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.1em;
             color: var(--gold-light);
             margin-top: 2rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards 1.3s;
+        }
+
+        body[dir="ltr"] .wedding-date-hero {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+        }
+
+        .no-kids-notice {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-top: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1.5s;
+            padding: 0.8rem 2rem;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        body[dir="ltr"] .no-kids-notice {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
         }
 
         .scroll-indicator {
@@ -210,6 +307,7 @@
             font-size: 0.65rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .scroll-line {
@@ -235,23 +333,34 @@
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Aref Ruqaa', serif;
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 300;
+            font-weight: 400;
             text-align: center;
             color: var(--charcoal);
             margin-bottom: 1rem;
         }
 
+        body[dir="ltr"] .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+
         .section-subtitle {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            text-align: center;
+            color: var(--gold-dark);
+            margin-bottom: 3rem;
+        }
+
+        body[dir="ltr"] .section-subtitle {
             font-family: 'Montserrat', sans-serif;
             font-weight: 200;
             font-size: 0.8rem;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            text-align: center;
-            color: var(--gold-dark);
-            margin-bottom: 3rem;
         }
 
         .ornament-divider {
@@ -285,6 +394,7 @@
             flex-wrap: wrap;
             max-width: 700px;
             margin: 0 auto;
+            direction: ltr;
         }
 
         .countdown-item {
@@ -314,13 +424,19 @@
         }
 
         .countdown-label {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            margin-top: 1rem;
+        }
+
+        body[dir="ltr"] .countdown-label {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             font-size: 0.7rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--gold-dark);
-            margin-top: 1rem;
         }
 
         /* Event Details */
@@ -390,19 +506,29 @@
         }
 
         .detail-card h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Aref Ruqaa', serif;
             font-size: 1.5rem;
             font-weight: 400;
             color: var(--charcoal);
             margin-bottom: 1rem;
         }
 
+        body[dir="ltr"] .detail-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
         .detail-card p {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        body[dir="ltr"] .detail-card p {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             font-size: 0.9rem;
-            line-height: 1.8;
-            color: #666;
         }
 
         /* Timeline */
@@ -436,10 +562,18 @@
 
         .timeline-item:nth-child(odd) {
             flex-direction: row-reverse;
+            text-align: left;
+        }
+
+        body[dir="ltr"] .timeline-item:nth-child(odd) {
             text-align: right;
         }
 
         .timeline-item:nth-child(even) {
+            text-align: right;
+        }
+
+        body[dir="ltr"] .timeline-item:nth-child(even) {
             text-align: left;
         }
 
@@ -465,24 +599,38 @@
             font-size: 1.8rem;
             font-weight: 600;
             color: var(--gold-dark);
+            direction: ltr;
+            display: inline-block;
         }
 
         .timeline-title {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            margin-top: 0.3rem;
+        }
+
+        body[dir="ltr"] .timeline-title {
             font-family: 'Montserrat', sans-serif;
             font-weight: 400;
             font-size: 0.85rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--charcoal);
-            margin-top: 0.3rem;
         }
 
         .timeline-desc {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        body[dir="ltr"] .timeline-desc {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             font-size: 0.8rem;
-            color: #888;
-            margin-top: 0.3rem;
         }
 
         /* RSVP Section */
@@ -525,11 +673,18 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(201, 168, 76, 0.3);
             color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
             font-size: 0.9rem;
             outline: none;
             transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        body[dir="ltr"] .form-group input,
+        body[dir="ltr"] .form-group select,
+        body[dir="ltr"] .form-group textarea {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
         }
 
         .form-group input::placeholder,
@@ -560,16 +715,22 @@
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--gold);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-            font-size: 0.8rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 500;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             align-self: center;
+        }
+
+        body[dir="ltr"] .rsvp-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
         }
 
         .rsvp-btn::before {
@@ -609,16 +770,25 @@
         }
 
         .rsvp-success h3 {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Aref Ruqaa', serif;
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 1rem;
         }
 
+        body[dir="ltr"] .rsvp-success h3 {
+            font-family: 'Great Vibes', cursive;
+        }
+
         .rsvp-success p {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            color: var(--gold-light);
+        }
+
+        body[dir="ltr"] .rsvp-success p {
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
-            color: var(--gold-light);
         }
 
         /* Map Section */
@@ -650,10 +820,14 @@
         }
 
         .footer-names {
-            font-family: 'Great Vibes', cursive;
+            font-family: 'Aref Ruqaa', serif;
             font-size: 2.5rem;
             color: var(--gold);
             margin-bottom: 1rem;
+        }
+
+        body[dir="ltr"] .footer-names {
+            font-family: 'Great Vibes', cursive;
         }
 
         .footer-date {
@@ -713,6 +887,13 @@
                 flex-direction: column;
                 text-align: center;
                 padding-left: 50px;
+                padding-right: 0;
+            }
+
+            body[dir="rtl"] .timeline-item,
+            body[dir="rtl"] .timeline-item:nth-child(odd) {
+                padding-left: 0;
+                padding-right: 50px;
             }
 
             .timeline-content {
@@ -721,6 +902,16 @@
 
             .timeline-dot {
                 left: 20px;
+            }
+
+            body[dir="rtl"] .timeline-dot {
+                left: auto;
+                right: 20px;
+            }
+
+            body[dir="rtl"] .timeline::before {
+                left: auto;
+                right: 20px;
             }
 
             .detail-card {
@@ -735,6 +926,11 @@
 
             .countdown-item {
                 min-width: 70px;
+            }
+
+            .no-kids-notice {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
             }
         }
 
@@ -759,16 +955,22 @@
         }
 
         .navbar a {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
+            font-family: 'Noto Naskh Arabic', serif;
+            font-weight: 400;
+            font-size: 0.8rem;
             color: var(--gold-light);
             text-decoration: none;
             transition: color 0.3s ease;
             padding: 0.3rem 0;
             position: relative;
+        }
+
+        body[dir="ltr"] .navbar a {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
         }
 
         .navbar a::after {
@@ -796,26 +998,83 @@
                 padding: 1rem;
             }
             .navbar a {
+                font-size: 0.65rem;
+            }
+            body[dir="ltr"] .navbar a {
                 font-size: 0.6rem;
                 letter-spacing: 0.15em;
             }
         }
+
+        /* Adults only badge in details */
+        .adults-only-badge {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--gold-light);
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.05), rgba(201, 168, 76, 0.1));
+            position: relative;
+        }
+
+        .adults-only-badge::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid var(--gold-light);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .adults-only-badge p {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.1rem;
+            color: var(--gold-dark);
+            margin: 0;
+        }
+
+        body[dir="ltr"] .adults-only-badge p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .adults-only-badge .badge-sub {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        body[dir="ltr"] .adults-only-badge .badge-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 0.75rem;
+        }
     </style>
 </head>
-<body>
+<body dir="rtl">
 
     <!-- Preloader -->
     <div class="preloader">
-        <div class="preloader-text">M & R</div>
+        <div class="preloader-text">م & ر</div>
+    </div>
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">English</button>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="#home">Hjem</a>
-        <a href="#countdown">Nedtelling</a>
-        <a href="#details">Detaljer</a>
-        <a href="#program">Program</a>
-        <a href="#rsvp">RSVP</a>
+        <a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
+        <a href="#countdown" data-ar="العد التنازلي" data-en="Countdown">العد التنازلي</a>
+        <a href="#details" data-ar="التفاصيل" data-en="Details">التفاصيل</a>
+        <a href="#program" data-ar="البرنامج" data-en="Program">البرنامج</a>
+        <a href="#rsvp" data-ar="تأكيد الحضور" data-en="RSVP">تأكيد الحضور</a>
     </nav>
 
     <!-- Hero -->
@@ -823,24 +1082,26 @@
         <div class="particles" id="particles"></div>
         <div class="hero-content">
             <div class="hero-ornament"></div>
-            <p class="save-the-date">Vi gifter oss</p>
+            <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+            <p class="save-the-date" data-ar="يسرّنا دعوتكم لحضور حفل زفافنا" data-en="We are getting married">يسرّنا دعوتكم لحضور حفل زفافنا</p>
             <h1 class="couple-names">
-                Mahmoud
-                <span class="couple-and">&</span>
-                Ranim
+                <span data-ar="محمود" data-en="Mahmoud">محمود</span>
+                <span class="couple-and" data-ar="و" data-en="&">&</span>
+                <span data-ar="رنيم" data-en="Ranim">رنيم</span>
             </h1>
-            <p class="wedding-date-hero">28 · Mars · 2026</p>
+            <p class="wedding-date-hero" data-ar="٢٨ · مارس · ٢٠٢٦" data-en="28 · March · 2026">٢٨ · مارس · ٢٠٢٦</p>
+            <div class="no-kids-notice" data-ar="جنّة الأطفال منازلهم" data-en="Adults only event">جنّة الأطفال منازلهم</div>
             <div class="hero-ornament" style="margin-top: 2rem;"></div>
         </div>
         <div class="scroll-indicator">
-            <span>Scroll</span>
+            <span>↓</span>
             <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- Countdown -->
     <section class="countdown-section" id="countdown">
-        <h2 class="section-title fade-in">Nedtelling til den store dagen</h2>
+        <h2 class="section-title fade-in" data-ar="العد التنازلي ليومنا الكبير" data-en="Counting Down to Our Big Day">العد التنازلي ليومنا الكبير</h2>
         <div class="ornament-divider fade-in">
             <div class="line"></div>
             <span class="diamond">◆</span>
@@ -849,27 +1110,27 @@
         <div class="countdown-container fade-in">
             <div class="countdown-item">
                 <span class="countdown-number" id="days">00</span>
-                <span class="countdown-label">Dager</span>
+                <span class="countdown-label" data-ar="يوم" data-en="Days">يوم</span>
             </div>
             <div class="countdown-item">
                 <span class="countdown-number" id="hours">00</span>
-                <span class="countdown-label">Timer</span>
+                <span class="countdown-label" data-ar="ساعة" data-en="Hours">ساعة</span>
             </div>
             <div class="countdown-item">
                 <span class="countdown-number" id="minutes">00</span>
-                <span class="countdown-label">Minutter</span>
+                <span class="countdown-label" data-ar="دقيقة" data-en="Minutes">دقيقة</span>
             </div>
             <div class="countdown-item">
                 <span class="countdown-number" id="seconds">00</span>
-                <span class="countdown-label">Sekunder</span>
+                <span class="countdown-label" data-ar="ثانية" data-en="Seconds">ثانية</span>
             </div>
         </div>
     </section>
 
     <!-- Details -->
     <section class="details-section" id="details">
-        <h2 class="section-title fade-in">Bryllupsdetaljer</h2>
-        <p class="section-subtitle fade-in">Alt du trenger å vite</p>
+        <h2 class="section-title fade-in" data-ar="تفاصيل حفل الزفاف" data-en="Wedding Details">تفاصيل حفل الزفاف</h2>
+        <p class="section-subtitle fade-in" data-ar="كل ما تحتاج معرفته" data-en="Everything you need to know">كل ما تحتاج معرفته</p>
         <div class="ornament-divider fade-in">
             <div class="line"></div>
             <span class="diamond">◆</span>
@@ -878,26 +1139,32 @@
         <div class="details-grid">
             <div class="detail-card fade-in">
                 <span class="detail-icon">📅</span>
-                <h3>Dato</h3>
-                <p>Lørdag, 28. mars 2026</p>
+                <h3 data-ar="التاريخ" data-en="Date">التاريخ</h3>
+                <p data-ar="السبت، ٢٨ مارس ٢٠٢٦" data-en="Saturday, March 28, 2026">السبت، ٢٨ مارس ٢٠٢٦</p>
             </div>
             <div class="detail-card fade-in">
                 <span class="detail-icon">📍</span>
-                <h3>Sted</h3>
+                <h3 data-ar="المكان" data-en="Venue">المكان</h3>
                 <p>Trondheimsveien 48F<br>2007 Kjeller</p>
             </div>
             <div class="detail-card fade-in">
                 <span class="detail-icon">🕐</span>
-                <h3>Tidspunkt</h3>
-                <p>Seremoni kl. 15:00<br>Middag kl. 17:00</p>
+                <h3 data-ar="الموعد" data-en="Time">الموعد</h3>
+                <p data-ar="الحفل الساعة ١٥:٠٠<br>العشاء الساعة ١٧:٠٠" data-en="Ceremony at 15:00<br>Dinner at 17:00">الحفل الساعة ١٥:٠٠<br>العشاء الساعة ١٧:٠٠</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <div class="adults-only-badge fade-in">
+                <p data-ar="🚫 جنّة الأطفال منازلهم 🚫" data-en="🚫 Adults Only Event 🚫">🚫 جنّة الأطفال منازلهم 🚫</p>
+                <span class="badge-sub" data-ar="نرجو عدم اصطحاب الأطفال" data-en="We kindly request no children attend">نرجو عدم اصطحاب الأطفال</span>
             </div>
         </div>
     </section>
 
     <!-- Timeline / Program -->
     <section class="timeline-section" id="program">
-        <h2 class="section-title fade-in">Dagens Program</h2>
-        <p class="section-subtitle fade-in">En dag fylt med kjærlighet</p>
+        <h2 class="section-title fade-in" data-ar="برنامج اليوم" data-en="Schedule of the Day">برنامج اليوم</h2>
+        <p class="section-subtitle fade-in" data-ar="يوم مليء بالحب والفرح" data-en="A day filled with love and joy">يوم مليء بالحب والفرح</p>
         <div class="ornament-divider fade-in">
             <div class="line"></div>
             <span class="diamond">◆</span>
@@ -907,48 +1174,48 @@
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">14:30</div>
-                    <div class="timeline-title">Ankomst</div>
-                    <div class="timeline-desc">Gjester ankommer</div>
+                    <div class="timeline-title" data-ar="الاستقبال" data-en="Arrival">الاستقبال</div>
+                    <div class="timeline-desc" data-ar="وصول الضيوف" data-en="Guests arrive">وصول الضيوف</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">15:00</div>
-                    <div class="timeline-title">Seremoni</div>
-                    <div class="timeline-desc">Vielsen begynner</div>
+                    <div class="timeline-title" data-ar="حفل الزفاف" data-en="Ceremony">حفل الزفاف</div>
+                    <div class="timeline-desc" data-ar="تبدأ مراسم الزفاف" data-en="The ceremony begins">تبدأ مراسم الزفاف</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">16:00</div>
-                    <div class="timeline-title">Cocktailtime</div>
-                    <div class="timeline-desc">Velkomstdrink og mingel</div>
+                    <div class="timeline-title" data-ar="حفل الاستقبال" data-en="Cocktail Hour">حفل الاستقبال</div>
+                    <div class="timeline-desc" data-ar="مشروبات ترحيبية" data-en="Welcome drinks & mingling">مشروبات ترحيبية</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">17:00</div>
-                    <div class="timeline-title">Middag</div>
-                    <div class="timeline-desc">Festmåltid serveres</div>
+                    <div class="timeline-title" data-ar="العشاء" data-en="Dinner">العشاء</div>
+                    <div class="timeline-desc" data-ar="يُقدَّم العشاء الفاخر" data-en="Feast is served">يُقدَّم العشاء الفاخر</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">19:00</div>
-                    <div class="timeline-title">Brudevals</div>
-                    <div class="timeline-desc">Første dans</div>
+                    <div class="timeline-title" data-ar="الرقصة الأولى" data-en="First Dance">الرقصة الأولى</div>
+                    <div class="timeline-desc" data-ar="رقصة العروسين" data-en="The couple's first dance">رقصة العروسين</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <div class="timeline-time">19:30</div>
-                    <div class="timeline-title">Fest & Dans</div>
-                    <div class="timeline-desc">Feiringen fortsetter</div>
+                    <div class="timeline-title" data-ar="الحفلة والرقص" data-en="Party & Dance">الحفلة والرقص</div>
+                    <div class="timeline-desc" data-ar="يستمر الاحتفال" data-en="The celebration continues">يستمر الاحتفال</div>
                 </div>
                 <div class="timeline-dot"></div>
             </div>
@@ -957,8 +1224,8 @@
 
     <!-- RSVP -->
     <section class="rsvp-section" id="rsvp">
-        <h2 class="section-title fade-in">RSVP</h2>
-        <p class="section-subtitle fade-in">Vi gleder oss til å feire med deg</p>
+        <h2 class="section-title fade-in" data-ar="تأكيد الحضور" data-en="RSVP">تأكيد الحضور</h2>
+        <p class="section-subtitle fade-in" data-ar="يسعدنا الاحتفال معكم" data-en="We look forward to celebrating with you">يسعدنا الاحتفال معكم</p>
         <div class="ornament-divider fade-in">
             <div class="line"></div>
             <span class="diamond" style="color: var(--gold-light);">◆</span>
@@ -966,32 +1233,32 @@
         </div>
         <form class="rsvp-form fade-in" id="rsvpForm">
             <div class="form-group">
-                <input type="text" placeholder="Ditt fulle navn" required>
+                <input type="text" data-placeholder-ar="الاسم الكامل" data-placeholder-en="Your full name" placeholder="الاسم الكامل" required>
             </div>
             <div class="form-group">
-                <select required>
-                    <option value="" disabled selected>Kommer du?</option>
-                    <option value="yes">Ja, jeg kommer gjerne!</option>
-                    <option value="no">Beklager, jeg kan dessverre ikke komme</option>
+                <select required id="attendSelect">
+                    <option value="" disabled selected data-ar="هل ستحضر؟" data-en="Will you attend?">هل ستحضر؟</option>
+                    <option value="yes" data-ar="نعم، بكل سرور!" data-en="Yes, with pleasure!">نعم، بكل سرور!</option>
+                    <option value="no" data-ar="للأسف لن أتمكن من الحضور" data-en="Unfortunately, I cannot attend">للأسف لن أتمكن من الحضور</option>
                 </select>
             </div>
             <div class="form-group">
-                <select>
-                    <option value="" disabled selected>Antall gjester</option>
-                    <option value="1">1 person</option>
-                    <option value="2">2 personer</option>
-                    <option value="3">3 personer</option>
-                    <option value="4">4 personer</option>
+                <select id="guestSelect">
+                    <option value="" disabled selected data-ar="عدد الضيوف" data-en="Number of guests">عدد الضيوف</option>
+                    <option value="1" data-ar="شخص واحد" data-en="1 person">شخص واحد</option>
+                    <option value="2" data-ar="شخصان" data-en="2 people">شخصان</option>
+                    <option value="3" data-ar="٣ أشخاص" data-en="3 people">٣ أشخاص</option>
+                    <option value="4" data-ar="٤ أشخاص" data-en="4 people">٤ أشخاص</option>
                 </select>
             </div>
             <div class="form-group">
-                <textarea placeholder="Matallergier eller andre meldinger (valgfritt)"></textarea>
+                <textarea data-placeholder-ar="حساسية طعام أو رسائل أخرى (اختياري)" data-placeholder-en="Food allergies or other messages (optional)" placeholder="حساسية طعام أو رسائل أخرى (اختياري)"></textarea>
             </div>
-            <button type="submit" class="rsvp-btn"><span>Send svar</span></button>
+            <button type="submit" class="rsvp-btn"><span data-ar="إرسال الرد" data-en="Send Response">إرسال الرد</span></button>
         </form>
         <div class="rsvp-success" id="rsvpSuccess">
-            <h3>Takk!</h3>
-            <p>Vi har mottatt svaret ditt og gleder oss til å se deg!</p>
+            <h3 data-ar="شكراً لكم!" data-en="Thank You!">شكراً لكم!</h3>
+            <p data-ar="لقد تلقينا ردكم ونتطلع لرؤيتكم!" data-en="We have received your response and look forward to seeing you!">لقد تلقينا ردكم ونتطلع لرؤيتكم!</p>
         </div>
     </section>
 
@@ -1009,12 +1276,52 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-names">Mahmoud & Ranim</div>
-        <div class="footer-date">28. mars 2026</div>
+        <div class="footer-names" data-ar="محمود و رنيم" data-en="Mahmoud & Ranim">محمود و رنيم</div>
+        <div class="footer-date">28 · 03 · 2026</div>
         <div class="footer-heart">♥</div>
     </footer>
 
     <script>
+        // Language state
+        let currentLang = 'ar';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const btn = document.getElementById('langBtn');
+            const html = document.documentElement;
+            const body = document.body;
+
+            if (currentLang === 'en') {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                body.setAttribute('dir', 'ltr');
+                btn.textContent = 'العربية';
+                document.title = 'Mahmoud & Ranim – Wedding Invitation';
+            } else {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                body.setAttribute('dir', 'rtl');
+                btn.textContent = 'English';
+                document.title = 'محمود و رنيم – دعوة زفاف';
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+                el.innerHTML = el.getAttribute('data-' + currentLang);
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-placeholder-ar][data-placeholder-en]').forEach(el => {
+                el.placeholder = el.getAttribute('data-placeholder-' + currentLang);
+            });
+
+            // Update preloader text
+            const preloaderText = document.querySelector('.preloader-text');
+            if (preloaderText) {
+                preloaderText.textContent = currentLang === 'ar' ? 'م & ر' : 'M & R';
+            }
+        }
+
         // Preloader
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -1072,11 +1379,14 @@
 
         // Navbar scroll effect
         const navbar = document.querySelector('.navbar');
+        const langToggle = document.getElementById('langToggle');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
+                langToggle.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+                langToggle.classList.remove('scrolled');
             }
         });
 
