@@ -18,27 +18,22 @@ export default function Intro({ onOpen }) {
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-    /* tap feedback — press + shake */
-    tl.to(handle, { scale: 0.9, duration: 0.08, ease: 'power2.in' })
-      .to(handle, { scale: 1, duration: 0.15, ease: 'elastic.out(1,0.5)' })
-      .to(handle, { x: -4, duration: 0.03, ease: 'none' }, '+=0.06')
-      .to(handle, { x: 4, duration: 0.03, ease: 'none' })
-      .to(handle, { x: -5, duration: 0.03, ease: 'none' })
-      .to(handle, { x: 5, duration: 0.03, ease: 'none' })
-      .to(handle, { x: -3, duration: 0.03, ease: 'none' })
-      .to(handle, { x: 0, duration: 0.03, ease: 'none' })
-      /* glow pulse */
-      .to(glow, {
-        opacity: 1,
-        background: 'radial-gradient(ellipse at 50% 50%, rgba(138,118,80,.35) 0%, rgba(138,118,80,.1) 30%, transparent 60%)',
-        duration: 0.6, ease: 'power2.out',
-      }, '+=0.1')
-      /* fade handle */
-      .to(handle, { opacity: 0, scale: 0.7, duration: 0.3 }, '<0.1')
-      /* slide left half (flap side) out to the left */
-      .to(flap, { x: '-100%', duration: 1.8, ease: 'power4.inOut' }, '<0.15')
+    /* fade handle */
+    tl.to(handle, { opacity: 0, duration: 0.3 })
+      /* 3D open: rotate flap around its fold line */
+      .to(flap, {
+        rotateY: -180,
+        duration: 1.6,
+        ease: 'power3.inOut',
+      }, '<')
+      /* fade out the whole intro overlay after flap is open */
+      .to([flap, intro.querySelector('.envelope-bg')], {
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.in',
+      }, '-=0.3')
       /* fade glow */
-      .to(glow, { opacity: 0, duration: 1 }, '<0.5')
+      .to(glow, { opacity: 0, duration: 0.6 }, '<')
       .add(() => {
         intro.classList.add('done')
         intro.style.pointerEvents = 'none'
