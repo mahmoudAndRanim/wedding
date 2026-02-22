@@ -30,8 +30,8 @@ function HeroInner() {
       <p className="invite" data-a="">{t.invite}</p>
 
       <h1 className="names" data-a="">
-        <span className="names-ar">محمود <span className="names-and-ar">و</span> رنيم</span>
-        <span className="names-en">Mahmoud <span className="names-and-en">&</span> Ranim</span>
+        <span className="names-ar">محمود و رنيم</span>
+        <span className="names-en">Mahmoud & Ranim</span>
       </h1>
 
       <p className="hero-date" data-a="">{t.date}</p>
