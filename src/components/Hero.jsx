@@ -12,7 +12,7 @@ export default function Hero() {
 }
 
 function HeroInner() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
 
   return (
     <div className="hero-inner">
@@ -31,7 +31,7 @@ function HeroInner() {
 
       <h1 className="names" data-a="">
         <span className="names-ar">محمود و رنيم</span>
-        <span className="names-en">Mahmoud & Ranim</span>
+        {lang === 'en' && <span className="names-en">Mahmoud & Ranim</span>}
       </h1>
 
       <p className="hero-date" data-a="">{t.date}</p>
