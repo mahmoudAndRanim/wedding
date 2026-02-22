@@ -51,10 +51,10 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
    ENVELOPE — fullscreen, flap on left side
    ═══════════════════════════════════════════════ */
 .env{
-  --paper:#F0ECDC;
-  --paper2:#E8E3D1;
-  --border:rgba(138,118,80,.55);
-  --border-in:rgba(138,118,80,.30);
+  --paper:#F4F0E4;
+  --paper2:#EDE9DB;
+  --border:rgba(138,118,80,.35);
+  --border-in:rgba(138,118,80,.18);
 
   position:relative;z-index:5;
   width:100vw;
@@ -67,37 +67,30 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
 .env-back{
   position:absolute;inset:0;
   background:
-    /* top-left light source highlight */
-    radial-gradient(ellipse at 15% 10%, rgba(255,252,240,.18) 0%, transparent 45%),
-    /* secondary highlight near top */
-    radial-gradient(ellipse at 50% 5%, rgba(255,250,235,.10) 0%, transparent 35%),
-    /* bottom-right ambient shadow */
-    radial-gradient(ellipse at 85% 90%, rgba(80,60,30,.08) 0%, transparent 50%),
-    /* warm vignette around edges */
-    radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(100,80,45,.10) 100%),
-    /* subtle color variation patches */
-    radial-gradient(ellipse at 25% 60%, rgba(190,170,130,.06) 0%, transparent 40%),
-    radial-gradient(ellipse at 75% 35%, rgba(185,165,125,.05) 0%, transparent 35%),
-    /* base paper gradient — warm kraft tone */
-    linear-gradient(165deg,#D6D0B8 0%,#CEC8AD 20%,#C6BFA3 40%,#BEB798 60%,#B8B092 80%,#B2AA8C 100%);
-  border:2.5px solid var(--border);
+    /* soft top-left highlight — elegant warm glow */
+    radial-gradient(ellipse at 18% 12%, rgba(255,252,244,.22) 0%, transparent 50%),
+    /* gentle secondary highlight */
+    radial-gradient(ellipse at 55% 8%, rgba(255,250,240,.10) 0%, transparent 40%),
+    /* bottom-right soft shadow */
+    radial-gradient(ellipse at 82% 88%, rgba(90,72,42,.06) 0%, transparent 50%),
+    /* very subtle warm vignette */
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(110,90,55,.06) 100%),
+    /* base — elegant ivory/cream gradient */
+    linear-gradient(168deg,#E8E3D2 0%,#E2DCCA 20%,#DCD6C2 40%,#D6CFBA 60%,#D0C9B2 80%,#CAC3AB 100%);
+  border:1.5px solid var(--border);
   overflow:hidden;
-  /* comprehensive depth shadows */
+  /* refined depth shadows */
   box-shadow:
-    /* outer drop shadow — envelope lifted from surface */
-    0 8px 25px rgba(0,0,0,.15),
-    0 3px 10px rgba(0,0,0,.10),
-    /* inner ambient occlusion */
-    inset 0 0 40px rgba(100,80,45,.08),
-    inset 0 0 80px rgba(100,80,45,.04),
-    /* top edge — folded panel shadow */
-    inset 0 12px 20px -8px rgba(80,60,30,.10),
-    /* bottom edge shadow */
-    inset 0 -10px 18px -6px rgba(80,60,30,.08),
-    /* left edge — flap fold crease */
-    inset 8px 0 16px -5px rgba(80,60,30,.10),
-    /* right edge */
-    inset -8px 0 16px -5px rgba(80,60,30,.07);
+    /* outer drop shadow — subtle lift */
+    0 6px 20px rgba(0,0,0,.10),
+    0 2px 8px rgba(0,0,0,.06),
+    /* inner ambient */
+    inset 0 0 50px rgba(100,80,45,.05),
+    /* edge shadows — delicate */
+    inset 0 8px 16px -6px rgba(80,60,30,.06),
+    inset 0 -8px 14px -5px rgba(80,60,30,.05),
+    inset 6px 0 12px -4px rgba(80,60,30,.06),
+    inset -6px 0 12px -4px rgba(80,60,30,.05);
 }
 /* inner border */
 .env-back::after{
@@ -124,14 +117,14 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
     /* diagonal weave */
     repeating-linear-gradient(30deg, transparent, transparent 7px, rgba(105,80,42,.04) 7px, rgba(105,80,42,.04) 8px),
     repeating-linear-gradient(-30deg, transparent, transparent 8px, rgba(100,75,40,.035) 8px, rgba(100,75,40,.035) 9px),
-    /* shadow along left fold edge — darker where it meets envelope */
-    linear-gradient(90deg, rgba(40,30,15,.18) 0%, rgba(60,45,20,.08) 12%, transparent 35%),
-    /* top-left shadow — light can't reach the fold corner */
-    radial-gradient(ellipse at 0% 50%, rgba(40,28,10,.14) 0%, transparent 45%),
+    /* shadow along left fold edge */
+    linear-gradient(90deg, rgba(40,30,15,.14) 0%, rgba(60,45,20,.06) 12%, transparent 30%),
+    /* fold shadow */
+    radial-gradient(ellipse at 0% 50%, rgba(40,28,10,.12) 0%, transparent 40%),
     /* subtle highlight on right edge */
-    linear-gradient(270deg, rgba(255,250,235,.10) 0%, transparent 25%),
-    /* paper gradient — slightly different angle for depth */
-    linear-gradient(200deg,#D1CBAF 0%,#C9C2A7 35%,#C2BB9F 70%,#BCB498 100%);
+    linear-gradient(270deg, rgba(255,252,242,.06) 0%, transparent 20%),
+    /* darker base — matches envelope body */
+    linear-gradient(200deg,#D6CFBA 0%,#CFCAB2 35%,#C8C2AA 70%,#C2BCA4 100%);
   box-shadow:
     inset 6px 0 16px rgba(40,28,10,.14),
     inset 3px 0 8px rgba(50,35,15,.10),
@@ -387,13 +380,13 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
     repeating-linear-gradient(35deg, transparent, transparent 7px, rgba(105,80,42,.04) 7px, rgba(105,80,42,.04) 8px),
     repeating-linear-gradient(-35deg, transparent, transparent 8px, rgba(100,75,40,.035) 8px, rgba(100,75,40,.035) 9px),
     /* top-left highlight */
-    radial-gradient(ellipse at 10% 15%, rgba(255,250,235,.20) 0%, transparent 45%),
+    radial-gradient(ellipse at 10% 15%, rgba(255,252,244,.16) 0%, transparent 45%),
     /* center depth shadow */
-    radial-gradient(ellipse at 70% 50%, rgba(80,60,30,.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(80,60,30,.05) 0%, transparent 50%),
     /* right edge shadow near fold point */
-    linear-gradient(270deg, rgba(60,45,20,.10) 0%, transparent 25%),
-    /* paper tone */
-    linear-gradient(110deg,#CEC8AD 0%,#C6BFA3 30%,#BEB798 60%,#B8B092 100%);
+    linear-gradient(270deg, rgba(60,45,20,.06) 0%, transparent 20%),
+    /* paper tone — elegant ivory */
+    linear-gradient(110deg,#E2DCCA 0%,#DCD6C2 30%,#D6CFBA 60%,#D0C9B2 100%);
 }
 .env-flap-outer::before,.env-flap-outer::after{display:none}
 .env-flap-outer .env-flap-inner-deco{display:none}
@@ -408,9 +401,9 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
     repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(100,75,40,.045) 5px, rgba(100,75,40,.045) 6px, transparent 6px, transparent 12px),
     /* diagonal weave */
     repeating-linear-gradient(35deg, transparent, transparent 7px, rgba(105,80,42,.035) 7px, rgba(105,80,42,.035) 8px),
-    radial-gradient(ellipse at 85% 50%, rgba(255,250,235,.15) 0%, transparent 40%),
-    radial-gradient(ellipse at 30% 50%, rgba(80,60,30,.06) 0%, transparent 50%),
-    linear-gradient(250deg,#CEC8AD 0%,#C6BFA3 30%,#BEB798 60%,#B8B092 100%);
+    radial-gradient(ellipse at 85% 50%, rgba(255,252,244,.12) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 50%, rgba(80,60,30,.04) 0%, transparent 50%),
+    linear-gradient(250deg,#E2DCCA 0%,#DCD6C2 30%,#D6CFBA 60%,#D0C9B2 100%);
   clip-path:polygon(0 0, 100% 50%, 0 100%);
 }
 
@@ -419,114 +412,107 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   position:absolute;z-index:10;
   top:50%;left:calc(50% - 1px);
   transform:translate(-50%,-50%);
-  width:clamp(140px,40vw,210px);
-  height:clamp(140px,40vw,210px);
+  width:clamp(120px,32vw,170px);
+  height:clamp(120px,32vw,170px);
   border-radius:50%;
   background:
-    /* strong top-left highlight — hot spot from light source */
-    radial-gradient(ellipse at 28% 22%, rgba(255,245,210,.50) 0%, rgba(255,240,200,.20) 25%, transparent 50%),
+    /* specular highlight — elegant glow */
+    radial-gradient(ellipse at 30% 25%, rgba(255,248,225,.45) 0%, rgba(255,242,210,.15) 20%, transparent 45%),
     /* secondary rim catch-light */
-    radial-gradient(ellipse at 68% 18%, rgba(255,235,195,.22) 0%, transparent 28%),
-    /* left edge rim light */
-    radial-gradient(ellipse at 12% 45%, rgba(255,240,210,.12) 0%, transparent 25%),
-    /* deep bottom-right shadow — opposite of light */
-    radial-gradient(ellipse at 72% 80%, rgba(20,15,5,.40) 0%, transparent 50%),
-    /* mid shadow crescent */
-    radial-gradient(ellipse at 60% 65%, rgba(50,35,15,.18) 0%, transparent 40%),
-    /* wax color variation — warm center */
-    radial-gradient(ellipse at 40% 40%, rgba(220,190,140,.25) 0%, transparent 40%),
-    /* base wax gradient — rich depth */
-    radial-gradient(circle at 42% 38%,
-      #E2D4A6 0%, #DACA98 8%, #D0BC88 16%, #C4AA78 24%,
-      #B89C6A 32%, #A88E5C 42%, #8A7650 55%, #7A6844 68%,
-      #6A5C3C 78%, #5C4F35 88%, #4E4230 100%);
+    radial-gradient(ellipse at 65% 15%, rgba(255,238,200,.18) 0%, transparent 25%),
+    /* deep bottom-right shadow */
+    radial-gradient(ellipse at 70% 78%, rgba(40,15,10,.35) 0%, transparent 50%),
+    /* mid shadow */
+    radial-gradient(ellipse at 58% 62%, rgba(60,25,15,.14) 0%, transparent 35%),
+    /* warm wax center */
+    radial-gradient(ellipse at 42% 42%, rgba(180,60,40,.12) 0%, transparent 35%),
+    /* base — deep burgundy/crimson wax */
+    radial-gradient(circle at 44% 40%,
+      #C4796A 0%, #B86B5C 10%, #A85A4C 20%, #984C40 30%,
+      #883E34 40%, #7A3430 50%, #6C2C28 60%, #5E2422 70%,
+      #521E1C 80%, #461818 90%, #3C1414 100%);
   box-shadow:
-    /* primary drop shadow — strong lift */
-    0 14px 45px rgba(0,0,0,.45),
-    0 6px 18px rgba(0,0,0,.28),
-    0 2px 5px rgba(0,0,0,.18),
-    /* contact shadow — tight under seal */
-    0 2px 4px rgba(40,30,10,.35),
-    /* top-left lit beveled edge */
-    inset 4px 5px 12px rgba(255,248,220,.35),
-    /* bottom-right deep shadow bevel */
-    inset -5px -6px 14px rgba(20,12,0,.40),
-    /* right edge shadow */
-    inset -2px 0 6px rgba(30,20,5,.18),
+    /* drop shadow */
+    0 10px 35px rgba(0,0,0,.35),
+    0 4px 14px rgba(0,0,0,.22),
+    0 1px 4px rgba(0,0,0,.14),
+    /* top-left beveled glow */
+    inset 3px 4px 10px rgba(255,220,200,.28),
+    /* bottom-right shadow bevel */
+    inset -4px -5px 12px rgba(20,8,5,.35),
     /* ambient inner depth */
-    inset 0 0 25px rgba(80,60,30,.15),
-    /* tiny specular at top */
-    inset 1px 2px 3px rgba(255,250,230,.22);
+    inset 0 0 20px rgba(60,20,15,.12),
+    /* tiny specular */
+    inset 1px 2px 3px rgba(255,240,220,.18);
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
-  gap:5px;
+  gap:4px;
   cursor:pointer;pointer-events:all;
   animation:sealGlow 3s ease-in-out infinite;
 }
 @keyframes sealGlow{
-  0%,100%{box-shadow:0 14px 45px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.28),0 2px 4px rgba(40,30,10,.35),inset 4px 5px 12px rgba(255,248,220,.35),inset -5px -6px 14px rgba(20,12,0,.40),inset 0 0 25px rgba(80,60,30,.15)}
-  50%{box-shadow:0 16px 50px rgba(138,118,80,.50),0 7px 20px rgba(0,0,0,.30),0 2px 4px rgba(40,30,10,.35),inset 4px 5px 12px rgba(255,248,220,.40),inset -5px -6px 14px rgba(20,12,0,.36),inset 0 0 25px rgba(80,60,30,.12)}
+  0%,100%{box-shadow:0 10px 35px rgba(0,0,0,.35),0 4px 14px rgba(0,0,0,.22),0 1px 4px rgba(0,0,0,.14),inset 3px 4px 10px rgba(255,220,200,.28),inset -4px -5px 12px rgba(20,8,5,.35),inset 0 0 20px rgba(60,20,15,.12)}
+  50%{box-shadow:0 12px 40px rgba(120,50,40,.40),0 5px 16px rgba(0,0,0,.25),0 1px 4px rgba(0,0,0,.14),inset 3px 4px 10px rgba(255,220,200,.32),inset -4px -5px 12px rgba(20,8,5,.30),inset 0 0 20px rgba(60,20,15,.10)}
 }
-/* ring 1 — bright outer rim with bevel */
+/* ring 1 — fine outer rim */
 .env-seal::before{
   content:'';position:absolute;inset:4px;
   border-radius:50%;
-  border:1.5px solid rgba(255,255,255,.25);
+  border:1px solid rgba(255,200,180,.18);
   pointer-events:none;
   box-shadow:
-    inset 1px 1px 3px rgba(255,250,230,.14),
-    0 1px 2px rgba(0,0,0,.12);
+    inset 1px 1px 2px rgba(255,220,200,.10),
+    0 1px 2px rgba(0,0,0,.10);
 }
 /* ring 2 — inner groove */
 .env-seal::after{
-  content:'';position:absolute;inset:9px;
+  content:'';position:absolute;inset:8px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(255,200,180,.12);
   pointer-events:none;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.08);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.06);
 }
-/* ring 3 — via extra element */
+/* ring 3 */
 .env-seal-ring3{
-  position:absolute;inset:14px;
+  position:absolute;inset:12px;
   border-radius:50%;
-  border:1px solid rgba(255,255,255,.10);
+  border:0.5px solid rgba(255,200,180,.08);
   pointer-events:none;
 }
-/* ring 4 — notched / dashed for texture */
+/* ring 4 — subtle dashed texture ring */
 .env-seal-ring4{
-  position:absolute;inset:19px;
+  position:absolute;inset:16px;
   border-radius:50%;
-  border:0.5px dashed rgba(255,255,255,.12);
+  border:0.5px dashed rgba(255,200,180,.10);
   pointer-events:none;
 }
 /* inner stamped depression — concave center */
 .env-seal-ring4::after{
-  content:'';position:absolute;inset:6px;
+  content:'';position:absolute;inset:5px;
   border-radius:50%;
   background:
-    /* top shadow — light can't reach the pressed-in top edge */
-    linear-gradient(180deg, rgba(30,20,5,.22) 0%, transparent 35%),
-    /* bottom highlight — light catches the bottom lip */
-    linear-gradient(0deg, rgba(255,245,215,.18) 0%, transparent 30%),
-    /* center slight darkening — recessed area */
-    radial-gradient(circle at 50% 50%, rgba(60,45,20,.12) 0%, transparent 60%);
+    /* top shadow — pressed-in edge */
+    linear-gradient(180deg, rgba(30,10,8,.20) 0%, transparent 30%),
+    /* bottom edge highlight */
+    linear-gradient(0deg, rgba(255,220,200,.14) 0%, transparent 25%),
+    /* recessed center */
+    radial-gradient(circle at 50% 50%, rgba(40,15,10,.10) 0%, transparent 55%);
   box-shadow:
-    inset 0 3px 6px rgba(20,12,0,.25),
-    inset 0 -2px 4px rgba(255,245,220,.15),
-    inset 2px 2px 5px rgba(30,20,5,.10),
-    inset -2px -1px 4px rgba(255,240,200,.08);
+    inset 0 2px 5px rgba(20,8,5,.22),
+    inset 0 -2px 3px rgba(255,220,200,.12),
+    inset 1px 1px 4px rgba(30,12,8,.08);
   pointer-events:none;
 }
 .env-seal-monogram{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(1.1rem,3.8vw,1.8rem);
-  font-style:italic;font-weight:400;
-  color:rgba(255,255,255,.92);
-  letter-spacing:.1em;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1.2rem,4vw,1.9rem);
+  font-weight:400;
+  color:rgba(255,235,220,.90);
+  letter-spacing:.08em;
   text-shadow:
-    0 2px 4px rgba(0,0,0,.4),
-    0 1px 1px rgba(0,0,0,.25),
-    0 -1px 1px rgba(255,245,220,.12);
+    0 2px 4px rgba(0,0,0,.35),
+    0 1px 1px rgba(0,0,0,.20),
+    0 -1px 1px rgba(255,230,210,.10);
   line-height:1;
   z-index:1;
 }
@@ -534,22 +520,22 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   font-family:'Great Vibes',cursive;
   font-style:normal;
   font-size:.85em;
-  margin:0 .14em;
+  margin:0 .08em;
 }
 .env-seal-tap{
   font-family:'Montserrat',sans-serif;
   font-weight:300;
-  font-size:clamp(.42rem,1.4vw,.58rem);
-  letter-spacing:.22em;
+  font-size:clamp(.4rem,1.3vw,.52rem);
+  letter-spacing:.2em;
   text-transform:uppercase;
-  color:rgba(255,255,255,.7);
-  text-shadow:0 1px 2px rgba(0,0,0,.18);
+  color:rgba(255,230,210,.65);
+  text-shadow:0 1px 2px rgba(0,0,0,.15);
   animation:tapPulse 2.5s ease-in-out infinite;
   z-index:1;
 }
 @keyframes tapPulse{
-  0%,100%{opacity:.5}
-  50%{opacity:1}
+  0%,100%{opacity:.45}
+  50%{opacity:.95}
 }
 
 .intro.done{pointer-events:none;visibility:hidden}

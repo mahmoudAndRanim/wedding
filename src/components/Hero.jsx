@@ -36,6 +36,8 @@ function HeroInner() {
 
       <p className="hero-date" data-a="">{t.date}</p>
 
+      <a href="#rsvp" className="hero-rsvp-btn" data-a="">{t.rsvp}</a>
+
       <div className="adults" data-a="">
         <span>{t.adultsOnly}</span>
         <span className="adults-sub">{t.adultsSub}</span>
