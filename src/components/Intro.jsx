@@ -5,6 +5,7 @@ export default function Intro({ onOpen }) {
   const introRef = useRef(null)
   const flapRef  = useRef(null)
   const sealRef  = useRef(null)
+  const cardRef  = useRef(null)
   const [opened, setOpened] = useState(false)
 
   const openEnvelope = useCallback(() => {
@@ -14,6 +15,7 @@ export default function Intro({ onOpen }) {
     const intro = introRef.current
     const flap  = flapRef.current
     const seal  = sealRef.current
+    const card  = cardRef.current
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -25,6 +27,12 @@ export default function Intro({ onOpen }) {
         duration: 1.2,
         ease: 'power2.inOut',
       }, '-=0.05')
+      /* 2b — slide card up */
+      .to(card, {
+        y: '-18%',
+        duration: 0.8,
+        ease: 'power2.out',
+      }, '-=0.6')
       /* 3 — fade out entire overlay */
       .to(intro, {
         opacity: 0,
@@ -45,49 +53,25 @@ export default function Intro({ onOpen }) {
 
       <div className="env" onClick={openEnvelope}>
         {/* Envelope body */}
-        <div className="env-back">
-          {/* Paper texture grain */}
-          <div className="env-texture" />
-          {/* Center crease shadow */}
-          <div className="env-crease" />
-          {/* Top fold shadow */}
-          <div className="env-fold-shadow env-fold-shadow-top" />
-          {/* Bottom fold shadow */}
-          <div className="env-fold-shadow env-fold-shadow-bottom" />
-          {/* Corner floral decorations */}
-          <div className="env-floral env-floral-tl" />
-          <div className="env-floral env-floral-tr" />
-          <div className="env-floral env-floral-bl" />
-          <div className="env-floral env-floral-br" />
-          {/* Corner bracket ornaments */}
-          <div className="env-corner env-corner-tl" />
-          <div className="env-corner env-corner-tr" />
-          <div className="env-corner env-corner-bl" />
-          <div className="env-corner env-corner-br" />
-          {/* Center ornament */}
-          <div className="env-ornament" />
-          {/* Extra border lines */}
-          <div className="env-border2" />
-          <div className="env-border3" />
+        <div className="env-back" />
+
+        {/* Invitation card inside */}
+        <div className="env-card" ref={cardRef}>
+          <span className="env-card-label">Invitation</span>
+          <span className="env-card-label-ar">دعوة زفاف</span>
         </div>
 
-        {/* Right-side decorative triangle (not a flap, just lines) */}
-        <div className="env-right-tri">
-          <div className="env-right-tri-fill" />
-        </div>
+        {/* Right-side decorative triangle */}
+        <div className="env-right-tri" />
 
         {/* Left-side flap */}
         <div className="env-flap" ref={flapRef}>
-          <div className="env-flap-outer">
-            <div className="env-flap-inner-deco" />
-          </div>
+          <div className="env-flap-outer" />
           <div className="env-flap-inner" />
         </div>
 
         {/* Wax seal */}
         <div className="env-seal" ref={sealRef}>
-          <div className="env-seal-ring3" />
-          <div className="env-seal-ring4" />
           <span className="env-seal-monogram">M<span>&amp;</span>R</span>
           <span className="env-seal-tap">Tap to open</span>
         </div>

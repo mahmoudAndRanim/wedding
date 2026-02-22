@@ -6,7 +6,6 @@ export default function Hero() {
     <section className="hero" id="home">
       <div id="heroParticles" />
       <HeroInner />
-      <ScrollCue />
     </section>
   )
 }
@@ -30,17 +29,18 @@ function HeroInner() {
       <p className="invite" data-a="">{t.invite}</p>
 
       <h1 className="names" data-a="">
-        <span className="names-ar">محمود و رنيم</span>
+        {lang === 'ar' && <span className="names-ar">محمود و رنيم</span>}
         {lang === 'en' && <span className="names-en">Mahmoud & Ranim</span>}
       </h1>
 
       <p className="hero-date" data-a="">{t.date}</p>
 
-      <a href="#rsvp" className="hero-rsvp-btn" data-a="">{t.rsvp}</a>
-
-      <div className="adults" data-a="">
-        <span>{t.adultsOnly}</span>
-        <span className="adults-sub">{t.adultsSub}</span>
+      <div className="hero-actions" data-a="">
+        <div className="adults">
+          <span>{t.adultsOnly}</span>
+          <span className="adults-sub">{t.adultsSub}</span>
+        </div>
+        <a href="#rsvp" className="hero-rsvp-btn">{t.rsvp}</a>
       </div>
     </div>
   )

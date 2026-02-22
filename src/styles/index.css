@@ -38,7 +38,9 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
 }
 .intro-glow{
   position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 50%,
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%, rgba(138,118,80,.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%,
     rgba(138,118,80,.10) 0%,rgba(138,118,80,.03) 40%,transparent 70%);
   z-index:0;
 }
@@ -48,60 +50,46 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
 }
 
 /* ═══════════════════════════════════════════════
-   ENVELOPE — fullscreen, flap on left side
+   ENVELOPE — fullscreen, modern minimal design
    ═══════════════════════════════════════════════ */
 .env{
-  --paper:#F4F0E4;
-  --paper2:#EDE9DB;
-  --border:rgba(138,118,80,.35);
-  --border-in:rgba(138,118,80,.18);
+  --paper:#F7F4ED;
+  --paper2:#F0ECE2;
+  --border:rgba(138,118,80,.22);
+  --border-in:rgba(138,118,80,.12);
 
   position:relative;z-index:5;
   width:100vw;
   height:100vh;height:100dvh;
   cursor:pointer;pointer-events:all;
-  perspective:1000px;
+  perspective:1200px;
 }
 
-/* ── envelope body ── */
+/* ── envelope body — clean matte surface ── */
 .env-back{
   position:absolute;inset:0;
   background:
-    /* soft top-left highlight — elegant warm glow */
-    radial-gradient(ellipse at 18% 12%, rgba(255,252,244,.22) 0%, transparent 50%),
-    /* gentle secondary highlight */
-    radial-gradient(ellipse at 55% 8%, rgba(255,250,240,.10) 0%, transparent 40%),
-    /* bottom-right soft shadow */
-    radial-gradient(ellipse at 82% 88%, rgba(90,72,42,.06) 0%, transparent 50%),
-    /* very subtle warm vignette */
-    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(110,90,55,.06) 100%),
-    /* base — elegant ivory/cream gradient */
-    linear-gradient(168deg,#E8E3D2 0%,#E2DCCA 20%,#DCD6C2 40%,#D6CFBA 60%,#D0C9B2 80%,#CAC3AB 100%);
-  border:1.5px solid var(--border);
+    /* soft highlight */
+    radial-gradient(ellipse at 25% 15%, rgba(255,253,248,.18) 0%, transparent 55%),
+    /* clean matte base */
+    linear-gradient(170deg,#EDE9DC 0%,#E8E4D6 30%,#E3DFCF 60%,#DDD9C9 100%);
+  border:1px solid var(--border);
   overflow:hidden;
-  /* refined depth shadows */
   box-shadow:
-    /* outer drop shadow — subtle lift */
-    0 6px 20px rgba(0,0,0,.10),
-    0 2px 8px rgba(0,0,0,.06),
-    /* inner ambient */
-    inset 0 0 50px rgba(100,80,45,.05),
-    /* edge shadows — delicate */
-    inset 0 8px 16px -6px rgba(80,60,30,.06),
-    inset 0 -8px 14px -5px rgba(80,60,30,.05),
-    inset 6px 0 12px -4px rgba(80,60,30,.06),
-    inset -6px 0 12px -4px rgba(80,60,30,.05);
+    0 4px 16px rgba(0,0,0,.06),
+    0 1px 4px rgba(0,0,0,.04),
+    inset 0 0 40px rgba(100,80,45,.03);
 }
-/* inner border */
+/* single subtle inner border */
 .env-back::after{
-  content:'';position:absolute;inset:14px;
-  border:1.5px solid var(--border-in);
+  content:'';position:absolute;inset:18px;
+  border:1px solid var(--border-in);
   pointer-events:none;
 }
 .env-border2{display:none}
 .env-border3{display:none}
 
-/* ── right-side triangle — just lines, no fill ── */
+/* ── right-side triangle — clean modern fold ── */
 .env-right-tri{
   position:absolute;
   top:0;right:0;
@@ -110,252 +98,53 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   pointer-events:none;
   clip-path:polygon(100% 0, 0 50%, 100% 100%);
   background:
-    /* horizontal fibers */
-    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(100,75,40,.06) 4px, rgba(100,75,40,.06) 5px, transparent 5px, transparent 10px),
-    /* vertical fibers */
-    repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(100,75,40,.05) 5px, rgba(100,75,40,.05) 6px, transparent 6px, transparent 12px),
-    /* diagonal weave */
-    repeating-linear-gradient(30deg, transparent, transparent 7px, rgba(105,80,42,.04) 7px, rgba(105,80,42,.04) 8px),
-    repeating-linear-gradient(-30deg, transparent, transparent 8px, rgba(100,75,40,.035) 8px, rgba(100,75,40,.035) 9px),
-    /* shadow along left fold edge */
-    linear-gradient(90deg, rgba(40,30,15,.14) 0%, rgba(60,45,20,.06) 12%, transparent 30%),
-    /* fold shadow */
-    radial-gradient(ellipse at 0% 50%, rgba(40,28,10,.12) 0%, transparent 40%),
-    /* subtle highlight on right edge */
-    linear-gradient(270deg, rgba(255,252,242,.06) 0%, transparent 20%),
-    /* darker base — matches envelope body */
-    linear-gradient(200deg,#D6CFBA 0%,#CFCAB2 35%,#C8C2AA 70%,#C2BCA4 100%);
-  box-shadow:
-    inset 6px 0 16px rgba(40,28,10,.14),
-    inset 3px 0 8px rgba(50,35,15,.10),
-    inset 1px 0 3px rgba(60,45,20,.08);
-  filter:drop-shadow(-4px 0 8px rgba(0,0,0,.12)) drop-shadow(-2px 0 3px rgba(0,0,0,.06)) drop-shadow(-1px 0 1px rgba(0,0,0,.04));
+    /* fold edge shadow */
+    linear-gradient(90deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.02) 10%, transparent 25%),
+    /* clean matte surface — slightly darker than body */
+    linear-gradient(200deg,#E3DFCF 0%,#DDD9C9 40%,#D8D4C3 100%);
+  filter:drop-shadow(-3px 0 6px rgba(0,0,0,.08));
 }
-/* SVG stroke overlay for the outline */
-.env-right-tri::before{
-  content:'';
-  position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='100,0 0,50 100,100' fill='none' stroke='%238A7650' stroke-width='0.8' stroke-opacity='.55'/%3E%3C/svg%3E");
-  background-size:100% 100%;
-  pointer-events:none;
-}
+.env-right-tri::before{display:none}
 .env-right-tri::after{display:none}
 .env-right-tri-fill{display:none}
 
-/* ── center crease shadow (vertical) ── */
-.env-crease{
+/* ── invitation card inside envelope — peeks out from top ── */
+.env-card{
   position:absolute;
-  top:0;bottom:0;
-  left:50%;width:2px;
-  transform:translateX(-50%);
-  background:linear-gradient(to bottom,
-    rgba(100,75,40,.06) 0%,
-    rgba(100,75,40,.12) 30%,
-    rgba(100,75,40,.14) 50%,
-    rgba(100,75,40,.12) 70%,
-    rgba(100,75,40,.06) 100%);
-  box-shadow:
-    -4px 0 12px 3px rgba(80,60,30,.05),
-    4px 0 12px 3px rgba(80,60,30,.05),
-    -1px 0 3px rgba(60,45,20,.08),
-    1px 0 3px rgba(60,45,20,.08);
-  pointer-events:none;
+  top:50%;left:50%;
+  transform:translate(-50%,-62%);
+  width:55%;height:70%;
   z-index:0;
-}
-
-/* ── top/bottom fold shadows ── */
-.env-fold-shadow{
-  position:absolute;
-  left:0;right:0;
-  height:40px;
-  pointer-events:none;
-  z-index:0;
-}
-.env-fold-shadow-top{
-  top:0;
-  background:linear-gradient(to bottom,rgba(80,60,30,.08) 0%,rgba(90,70,40,.03) 50%,transparent 100%);
-}
-.env-fold-shadow-bottom{
-  bottom:0;
-  background:linear-gradient(to top,rgba(80,60,30,.07) 0%,rgba(90,70,40,.02) 50%,transparent 100%);
-}
-
-/* paper texture / grain overlay — visible kraft paper look */
-.env-texture{
-  position:absolute;inset:0;
-  pointer-events:none;
-  opacity:1;
-  background-image:
-    /* coarse horizontal fibers — visible */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(100,75,40,.07) 3px,
-      rgba(100,75,40,.07) 4px,
-      transparent 4px,
-      transparent 8px,
-      rgba(90,70,35,.05) 8px,
-      rgba(90,70,35,.05) 9px
-    ),
-    /* coarse vertical fibers */
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 4px,
-      rgba(100,75,40,.06) 4px,
-      rgba(100,75,40,.06) 5px,
-      transparent 5px,
-      transparent 10px,
-      rgba(95,72,38,.045) 10px,
-      rgba(95,72,38,.045) 11px
-    ),
-    /* diagonal weave 30° */
-    repeating-linear-gradient(
-      30deg,
-      transparent,
-      transparent 6px,
-      rgba(110,85,45,.05) 6px,
-      rgba(110,85,45,.05) 7px
-    ),
-    /* diagonal weave -30° */
-    repeating-linear-gradient(
-      -30deg,
-      transparent,
-      transparent 7px,
-      rgba(105,80,42,.045) 7px,
-      rgba(105,80,42,.045) 8px
-    ),
-    /* fine crosshatch 45° */
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(100,75,40,.055) 2px,
-      rgba(100,75,40,.055) 3px
-    ),
-    /* fine crosshatch -45° */
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 2px,
-      rgba(100,75,40,.05) 2px,
-      rgba(100,75,40,.05) 3px
-    ),
-    /* noise speckle — denser */
-    repeating-conic-gradient(
-      rgba(100,75,40,.055) 0% 25%,
-      transparent 0% 50%
-    );
-  background-size:auto,auto,auto,auto,auto,auto,2px 2px;
-  mix-blend-mode:multiply;
-}
-.env-texture::before{
-  content:'';position:absolute;inset:0;
-  pointer-events:none;
-  opacity:1;
-  background-image:
-    /* random fiber clumps / paper pulp spots */
-    radial-gradient(circle at 12% 18%, rgba(140,105,55,.14) 0%, rgba(140,105,55,.08) 2px, transparent 4px),
-    radial-gradient(circle at 78% 22%, rgba(145,110,60,.12) 0%, transparent 3px),
-    radial-gradient(circle at 35% 45%, rgba(135,100,50,.10) 0%, transparent 5px),
-    radial-gradient(circle at 88% 55%, rgba(140,108,58,.11) 0%, transparent 4px),
-    radial-gradient(circle at 22% 72%, rgba(138,105,55,.12) 0%, transparent 3px),
-    radial-gradient(circle at 65% 82%, rgba(142,110,60,.10) 0%, transparent 5px),
-    radial-gradient(circle at 45% 15%, rgba(135,102,52,.09) 0%, transparent 3px),
-    radial-gradient(circle at 92% 88%, rgba(140,106,56,.11) 0%, transparent 4px),
-    /* larger aged paper mottling */
-    radial-gradient(ellipse at 15% 25%,rgba(155,125,70,.12) 0%,transparent 40%),
-    radial-gradient(ellipse at 82% 72%,rgba(150,120,65,.10) 0%,transparent 35%),
-    radial-gradient(ellipse at 48% 8%,rgba(145,115,60,.08) 0%,transparent 30%),
-    radial-gradient(ellipse at 25% 85%,rgba(150,122,68,.10) 0%,transparent 40%),
-    radial-gradient(ellipse at 72% 18%,rgba(148,118,62,.08) 0%,transparent 28%),
-    radial-gradient(ellipse at 55% 55%,rgba(152,125,72,.07) 0%,transparent 45%);
-}
-.env-texture::after{
-  content:'';position:absolute;inset:0;
   background:
-    /* warm highlight from light source */
-    radial-gradient(ellipse at 18% 12%,rgba(255,250,228,.28) 0%,transparent 45%),
-    radial-gradient(ellipse at 52% 30%,rgba(255,248,220,.14) 0%,transparent 40%),
-    /* subtle aged darkening in corners */
-    radial-gradient(ellipse at 0% 100%,rgba(90,70,35,.08) 0%,transparent 35%),
-    radial-gradient(ellipse at 100% 0%,rgba(90,70,35,.06) 0%,transparent 30%),
-    radial-gradient(ellipse at 100% 100%,rgba(85,65,32,.07) 0%,transparent 32%),
-    radial-gradient(ellipse at 0% 0%,rgba(85,65,32,.04) 0%,transparent 25%);
-  pointer-events:none;
+    linear-gradient(170deg,#FDFBF7 0%,#FAF8F0 40%,#F6F3EB 100%);
+  border:1px solid rgba(138,118,80,.15);
+  border-radius:2px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;
+  padding-top:12%;
+  gap:.6rem;
+  box-shadow:
+    0 2px 10px rgba(0,0,0,.05),
+    inset 0 0 16px rgba(138,118,80,.03);
+}
+.env-card-label{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1.4rem,4vw,2.2rem);
+  color:var(--gold);
+  letter-spacing:.04em;
+  opacity:1;
+}
+.env-card-label-ar{
+  font-family:'Aref Ruqaa',serif;
+  font-size:clamp(1rem,3vw,1.5rem);
+  color:var(--gold-deep);
+  opacity:.75;
+  direction:rtl;
 }
 
-/* ══ corner bracket ornaments ══ */
-.env-corner{
-  position:absolute;
-  width:28px;height:28px;
-  pointer-events:none;
-}
-.env-corner::before,.env-corner::after{
-  content:'';position:absolute;
-  background:var(--border);
-}
-.env-corner-tl{top:22px;left:22px}
-.env-corner-tl::before{top:0;left:0;width:18px;height:1.5px}
-.env-corner-tl::after{top:0;left:0;width:1.5px;height:18px}
-.env-corner-tr{top:22px;right:22px}
-.env-corner-tr::before{top:0;right:0;width:18px;height:1.5px}
-.env-corner-tr::after{top:0;right:0;width:1.5px;height:18px}
-.env-corner-bl{bottom:22px;left:22px}
-.env-corner-bl::before{bottom:0;left:0;width:18px;height:1.5px}
-.env-corner-bl::after{bottom:0;left:0;width:1.5px;height:18px}
-.env-corner-br{bottom:22px;right:22px}
-.env-corner-br::before{bottom:0;right:0;width:18px;height:1.5px}
-.env-corner-br::after{bottom:0;right:0;width:1.5px;height:18px}
+/* (removed: crease, fold shadows, texture, corners, ornament, florals — modernized) */
 
-/* ══ Arabic invitation text at top ══ */
-/* ══ center ornament on the right half ══ */
-.env-ornament{
-  position:absolute;
-  top:50%;right:18%;
-  transform:translate(50%,-50%);
-  width:clamp(100px,28vw,180px);
-  height:clamp(30px,8vw,50px);
-  pointer-events:none;
-  opacity:.22;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Cpath d='M20 25 Q40 8 60 25 Q80 42 100 25 Q120 8 140 25 Q160 42 180 25' fill='none' stroke='%238A7650' stroke-width='1'/%3E%3Cpath d='M40 25 Q60 15 80 25 Q100 35 120 25 Q140 15 160 25' fill='none' stroke='%238A7650' stroke-width='.6'/%3E%3Ccircle cx='100' cy='25' r='4' fill='none' stroke='%238A7650' stroke-width='.8'/%3E%3Ccircle cx='100' cy='25' r='1.5' fill='%238A7650' fill-opacity='.4'/%3E%3Cpath d='M5 25 L18 25 M182 25 L195 25' stroke='%238A7650' stroke-width='.6'/%3E%3C/svg%3E");
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center;
-}
-
-/* ── corner floral decorations (SVG) ── */
-.env-floral{
-  position:absolute;
-  width:clamp(90px,26vw,180px);
-  height:clamp(90px,26vw,180px);
-  pointer-events:none;
-  opacity:.40;
-  background-repeat:no-repeat;
-  background-size:contain;
-}
-.env-floral-tl{
-  top:8px;left:8px;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='lg1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238A7650' stop-opacity='.7'/%3E%3Cstop offset='1' stop-color='%238A7650' stop-opacity='.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='%238A7650'%3E%3C!-- main stem --%3E%3Cpath d='M8 8 Q30 20 45 45 Q58 68 65 95 Q70 115 68 140 Q66 155 72 168' stroke-width='1.8' stroke-opacity='.6'/%3E%3C!-- secondary stem --%3E%3Cpath d='M8 8 Q18 30 35 38 Q50 44 68 42' stroke-width='1.2' stroke-opacity='.5'/%3E%3Cpath d='M45 45 Q55 35 70 30 Q82 26 92 30' stroke-width='1' stroke-opacity='.45'/%3E%3C!-- Rose 1 (top-left, large) --%3E%3Cellipse cx='30' cy='28' rx='18' ry='16' stroke-width='1.1' stroke-opacity='.45'/%3E%3Cpath d='M18 22 Q26 16 38 18 Q44 20 42 28 Q40 34 30 36 Q20 36 16 28Z' stroke-width='.8' stroke-opacity='.5' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M24 20 Q30 14 38 20 Q42 26 36 32 Q28 34 22 28Z' stroke-width='.7' stroke-opacity='.55' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M28 22 Q33 18 36 24 Q38 30 32 32 Q26 30 26 26Z' stroke-width='.6' stroke-opacity='.6' fill='%238A7650' fill-opacity='.1'/%3E%3Ccircle cx='31' cy='26' r='3' stroke-width='.5' stroke-opacity='.5' fill='%238A7650' fill-opacity='.12'/%3E%3C!-- Rose 2 (mid, medium) --%3E%3Cellipse cx='62' cy='72' rx='14' ry='13' stroke-width='1' stroke-opacity='.4'/%3E%3Cpath d='M52 66 Q58 60 70 64 Q76 68 72 76 Q66 80 56 78 Q50 74 52 66Z' stroke-width='.7' stroke-opacity='.45' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M56 66 Q62 62 68 68 Q70 74 64 78 Q58 76 56 70Z' stroke-width='.6' stroke-opacity='.5' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='63' cy='72' r='4' stroke-width='.5' stroke-opacity='.45' fill='%238A7650' fill-opacity='.1'/%3E%3C!-- Rose 3 (bottom, small bud) --%3E%3Cellipse cx='70' cy='140' rx='10' ry='9' stroke-width='.8' stroke-opacity='.35'/%3E%3Cpath d='M63 135 Q68 130 76 134 Q80 138 74 144 Q68 146 64 140Z' stroke-width='.6' stroke-opacity='.4' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='70' cy='139' r='3' stroke-width='.5' stroke-opacity='.4' fill='%238A7650' fill-opacity='.08'/%3E%3C!-- Leaves --%3E%3Cpath d='M35 38 Q28 50 18 48 Q10 44 15 35 Q20 28 30 32' stroke-width='.9' stroke-opacity='.45' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M20 42 L26 36' stroke-width='.4' stroke-opacity='.3'/%3E%3Cpath d='M50 55 Q42 62 32 58 Q26 52 34 46 Q42 42 48 50' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M36 54 L44 48' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M70 30 Q80 22 90 28 Q94 36 86 42 Q76 44 70 36' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M82 30 L78 38' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M55 90 Q44 98 36 92 Q32 84 40 78 Q50 76 54 84' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M60 105 Q72 100 80 108 Q84 118 74 122 Q64 120 58 112' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M65 150 Q58 162 48 158 Q44 150 52 144 Q60 142 64 148' stroke-width='.6' stroke-opacity='.3' fill='%238A7650' fill-opacity='.03'/%3E%3C!-- Small buds/dots --%3E%3Ccircle cx='92' cy='32' r='2.5' stroke-width='.5' stroke-opacity='.3' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='42' cy='55' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='78' cy='118' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3C!-- tiny vine tendrils --%3E%3Cpath d='M15 15 Q10 22 12 30' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M12 12 Q20 8 26 14' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M68 42 Q76 48 80 56' stroke-width='.5' stroke-opacity='.2'/%3E%3Cpath d='M72 165 Q78 172 76 182' stroke-width='.5' stroke-opacity='.2'/%3E%3C/g%3E%3C/svg%3E");
-}
-.env-floral-tr{
-  top:8px;right:8px;
-  transform:scaleX(-1);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%238A7650'%3E%3Cpath d='M8 8 Q30 20 45 45 Q58 68 65 95 Q70 115 68 140 Q66 155 72 168' stroke-width='1.8' stroke-opacity='.6'/%3E%3Cpath d='M8 8 Q18 30 35 38 Q50 44 68 42' stroke-width='1.2' stroke-opacity='.5'/%3E%3Cpath d='M45 45 Q55 35 70 30 Q82 26 92 30' stroke-width='1' stroke-opacity='.45'/%3E%3Cellipse cx='30' cy='28' rx='18' ry='16' stroke-width='1.1' stroke-opacity='.45'/%3E%3Cpath d='M18 22 Q26 16 38 18 Q44 20 42 28 Q40 34 30 36 Q20 36 16 28Z' stroke-width='.8' stroke-opacity='.5' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M24 20 Q30 14 38 20 Q42 26 36 32 Q28 34 22 28Z' stroke-width='.7' stroke-opacity='.55' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M28 22 Q33 18 36 24 Q38 30 32 32 Q26 30 26 26Z' stroke-width='.6' stroke-opacity='.6' fill='%238A7650' fill-opacity='.1'/%3E%3Ccircle cx='31' cy='26' r='3' stroke-width='.5' stroke-opacity='.5' fill='%238A7650' fill-opacity='.12'/%3E%3Cellipse cx='62' cy='72' rx='14' ry='13' stroke-width='1' stroke-opacity='.4'/%3E%3Cpath d='M52 66 Q58 60 70 64 Q76 68 72 76 Q66 80 56 78 Q50 74 52 66Z' stroke-width='.7' stroke-opacity='.45' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M56 66 Q62 62 68 68 Q70 74 64 78 Q58 76 56 70Z' stroke-width='.6' stroke-opacity='.5' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='63' cy='72' r='4' stroke-width='.5' stroke-opacity='.45' fill='%238A7650' fill-opacity='.1'/%3E%3Cellipse cx='70' cy='140' rx='10' ry='9' stroke-width='.8' stroke-opacity='.35'/%3E%3Cpath d='M63 135 Q68 130 76 134 Q80 138 74 144 Q68 146 64 140Z' stroke-width='.6' stroke-opacity='.4' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='70' cy='139' r='3' stroke-width='.5' stroke-opacity='.4' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M35 38 Q28 50 18 48 Q10 44 15 35 Q20 28 30 32' stroke-width='.9' stroke-opacity='.45' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M20 42 L26 36' stroke-width='.4' stroke-opacity='.3'/%3E%3Cpath d='M50 55 Q42 62 32 58 Q26 52 34 46 Q42 42 48 50' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M36 54 L44 48' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M70 30 Q80 22 90 28 Q94 36 86 42 Q76 44 70 36' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M82 30 L78 38' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M55 90 Q44 98 36 92 Q32 84 40 78 Q50 76 54 84' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M60 105 Q72 100 80 108 Q84 118 74 122 Q64 120 58 112' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M65 150 Q58 162 48 158 Q44 150 52 144 Q60 142 64 148' stroke-width='.6' stroke-opacity='.3' fill='%238A7650' fill-opacity='.03'/%3E%3Ccircle cx='92' cy='32' r='2.5' stroke-width='.5' stroke-opacity='.3' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='42' cy='55' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='78' cy='118' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M15 15 Q10 22 12 30' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M12 12 Q20 8 26 14' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M68 42 Q76 48 80 56' stroke-width='.5' stroke-opacity='.2'/%3E%3Cpath d='M72 165 Q78 172 76 182' stroke-width='.5' stroke-opacity='.2'/%3E%3C/g%3E%3C/svg%3E");
-}
-.env-floral-bl{
-  bottom:8px;left:8px;
-  transform:scaleY(-1);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%238A7650'%3E%3Cpath d='M8 8 Q30 20 45 45 Q58 68 65 95 Q70 115 68 140 Q66 155 72 168' stroke-width='1.8' stroke-opacity='.6'/%3E%3Cpath d='M8 8 Q18 30 35 38 Q50 44 68 42' stroke-width='1.2' stroke-opacity='.5'/%3E%3Cpath d='M45 45 Q55 35 70 30 Q82 26 92 30' stroke-width='1' stroke-opacity='.45'/%3E%3Cellipse cx='30' cy='28' rx='18' ry='16' stroke-width='1.1' stroke-opacity='.45'/%3E%3Cpath d='M18 22 Q26 16 38 18 Q44 20 42 28 Q40 34 30 36 Q20 36 16 28Z' stroke-width='.8' stroke-opacity='.5' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M24 20 Q30 14 38 20 Q42 26 36 32 Q28 34 22 28Z' stroke-width='.7' stroke-opacity='.55' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M28 22 Q33 18 36 24 Q38 30 32 32 Q26 30 26 26Z' stroke-width='.6' stroke-opacity='.6' fill='%238A7650' fill-opacity='.1'/%3E%3Ccircle cx='31' cy='26' r='3' stroke-width='.5' stroke-opacity='.5' fill='%238A7650' fill-opacity='.12'/%3E%3Cellipse cx='62' cy='72' rx='14' ry='13' stroke-width='1' stroke-opacity='.4'/%3E%3Cpath d='M52 66 Q58 60 70 64 Q76 68 72 76 Q66 80 56 78 Q50 74 52 66Z' stroke-width='.7' stroke-opacity='.45' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M56 66 Q62 62 68 68 Q70 74 64 78 Q58 76 56 70Z' stroke-width='.6' stroke-opacity='.5' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='63' cy='72' r='4' stroke-width='.5' stroke-opacity='.45' fill='%238A7650' fill-opacity='.1'/%3E%3Cellipse cx='70' cy='140' rx='10' ry='9' stroke-width='.8' stroke-opacity='.35'/%3E%3Cpath d='M63 135 Q68 130 76 134 Q80 138 74 144 Q68 146 64 140Z' stroke-width='.6' stroke-opacity='.4' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='70' cy='139' r='3' stroke-width='.5' stroke-opacity='.4' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M35 38 Q28 50 18 48 Q10 44 15 35 Q20 28 30 32' stroke-width='.9' stroke-opacity='.45' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M20 42 L26 36' stroke-width='.4' stroke-opacity='.3'/%3E%3Cpath d='M50 55 Q42 62 32 58 Q26 52 34 46 Q42 42 48 50' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M36 54 L44 48' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M70 30 Q80 22 90 28 Q94 36 86 42 Q76 44 70 36' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M82 30 L78 38' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M55 90 Q44 98 36 92 Q32 84 40 78 Q50 76 54 84' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M60 105 Q72 100 80 108 Q84 118 74 122 Q64 120 58 112' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M65 150 Q58 162 48 158 Q44 150 52 144 Q60 142 64 148' stroke-width='.6' stroke-opacity='.3' fill='%238A7650' fill-opacity='.03'/%3E%3Ccircle cx='92' cy='32' r='2.5' stroke-width='.5' stroke-opacity='.3' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='42' cy='55' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='78' cy='118' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M15 15 Q10 22 12 30' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M12 12 Q20 8 26 14' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M68 42 Q76 48 80 56' stroke-width='.5' stroke-opacity='.2'/%3E%3Cpath d='M72 165 Q78 172 76 182' stroke-width='.5' stroke-opacity='.2'/%3E%3C/g%3E%3C/svg%3E");
-}
-.env-floral-br{
-  bottom:8px;right:8px;
-  transform:scale(-1,-1);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%238A7650'%3E%3Cpath d='M8 8 Q30 20 45 45 Q58 68 65 95 Q70 115 68 140 Q66 155 72 168' stroke-width='1.8' stroke-opacity='.6'/%3E%3Cpath d='M8 8 Q18 30 35 38 Q50 44 68 42' stroke-width='1.2' stroke-opacity='.5'/%3E%3Cpath d='M45 45 Q55 35 70 30 Q82 26 92 30' stroke-width='1' stroke-opacity='.45'/%3E%3Cellipse cx='30' cy='28' rx='18' ry='16' stroke-width='1.1' stroke-opacity='.45'/%3E%3Cpath d='M18 22 Q26 16 38 18 Q44 20 42 28 Q40 34 30 36 Q20 36 16 28Z' stroke-width='.8' stroke-opacity='.5' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M24 20 Q30 14 38 20 Q42 26 36 32 Q28 34 22 28Z' stroke-width='.7' stroke-opacity='.55' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M28 22 Q33 18 36 24 Q38 30 32 32 Q26 30 26 26Z' stroke-width='.6' stroke-opacity='.6' fill='%238A7650' fill-opacity='.1'/%3E%3Ccircle cx='31' cy='26' r='3' stroke-width='.5' stroke-opacity='.5' fill='%238A7650' fill-opacity='.12'/%3E%3Cellipse cx='62' cy='72' rx='14' ry='13' stroke-width='1' stroke-opacity='.4'/%3E%3Cpath d='M52 66 Q58 60 70 64 Q76 68 72 76 Q66 80 56 78 Q50 74 52 66Z' stroke-width='.7' stroke-opacity='.45' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M56 66 Q62 62 68 68 Q70 74 64 78 Q58 76 56 70Z' stroke-width='.6' stroke-opacity='.5' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='63' cy='72' r='4' stroke-width='.5' stroke-opacity='.45' fill='%238A7650' fill-opacity='.1'/%3E%3Cellipse cx='70' cy='140' rx='10' ry='9' stroke-width='.8' stroke-opacity='.35'/%3E%3Cpath d='M63 135 Q68 130 76 134 Q80 138 74 144 Q68 146 64 140Z' stroke-width='.6' stroke-opacity='.4' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='70' cy='139' r='3' stroke-width='.5' stroke-opacity='.4' fill='%238A7650' fill-opacity='.08'/%3E%3Cpath d='M35 38 Q28 50 18 48 Q10 44 15 35 Q20 28 30 32' stroke-width='.9' stroke-opacity='.45' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M20 42 L26 36' stroke-width='.4' stroke-opacity='.3'/%3E%3Cpath d='M50 55 Q42 62 32 58 Q26 52 34 46 Q42 42 48 50' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.05'/%3E%3Cpath d='M36 54 L44 48' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M70 30 Q80 22 90 28 Q94 36 86 42 Q76 44 70 36' stroke-width='.8' stroke-opacity='.4' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M82 30 L78 38' stroke-width='.4' stroke-opacity='.25'/%3E%3Cpath d='M55 90 Q44 98 36 92 Q32 84 40 78 Q50 76 54 84' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M60 105 Q72 100 80 108 Q84 118 74 122 Q64 120 58 112' stroke-width='.7' stroke-opacity='.35' fill='%238A7650' fill-opacity='.04'/%3E%3Cpath d='M65 150 Q58 162 48 158 Q44 150 52 144 Q60 142 64 148' stroke-width='.6' stroke-opacity='.3' fill='%238A7650' fill-opacity='.03'/%3E%3Ccircle cx='92' cy='32' r='2.5' stroke-width='.5' stroke-opacity='.3' fill='%238A7650' fill-opacity='.08'/%3E%3Ccircle cx='42' cy='55' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Ccircle cx='78' cy='118' r='2' stroke-width='.4' stroke-opacity='.25' fill='%238A7650' fill-opacity='.06'/%3E%3Cpath d='M15 15 Q10 22 12 30' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M12 12 Q20 8 26 14' stroke-width='.5' stroke-opacity='.25'/%3E%3Cpath d='M68 42 Q76 48 80 56' stroke-width='.5' stroke-opacity='.2'/%3E%3Cpath d='M72 165 Q78 172 76 182' stroke-width='.5' stroke-opacity='.2'/%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* ── left-side flap — swings open to the left ── */
+/* ── left-side flap — modern clean ── */
 .env-flap{
   position:absolute;
   top:0;left:0;
@@ -363,7 +152,7 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   transform-origin:left center;
   transform-style:preserve-3d;
   z-index:3;
-  filter:drop-shadow(6px 0 12px rgba(0,0,0,.16)) drop-shadow(3px 0 5px rgba(0,0,0,.10)) drop-shadow(1px 0 2px rgba(0,0,0,.06));
+  filter:drop-shadow(4px 0 10px rgba(0,0,0,.10)) drop-shadow(2px 0 4px rgba(0,0,0,.06));
 }
 .env-flap-outer{
   position:absolute;inset:0;
@@ -371,79 +160,64 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   pointer-events:none;
   clip-path:polygon(0 0, 100% 50%, 0 100%);
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 100,50 0,100' fill='none' stroke='%238A7650' stroke-width='0.8' stroke-opacity='.55'/%3E%3C/svg%3E") 0/100% 100% no-repeat,
-    /* horizontal fibers */
-    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(100,75,40,.06) 4px, rgba(100,75,40,.06) 5px, transparent 5px, transparent 10px),
-    /* vertical fibers */
-    repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(100,75,40,.05) 5px, rgba(100,75,40,.05) 6px, transparent 6px, transparent 12px),
-    /* diagonal weave */
-    repeating-linear-gradient(35deg, transparent, transparent 7px, rgba(105,80,42,.04) 7px, rgba(105,80,42,.04) 8px),
-    repeating-linear-gradient(-35deg, transparent, transparent 8px, rgba(100,75,40,.035) 8px, rgba(100,75,40,.035) 9px),
-    /* top-left highlight */
-    radial-gradient(ellipse at 10% 15%, rgba(255,252,244,.16) 0%, transparent 45%),
-    /* center depth shadow */
-    radial-gradient(ellipse at 70% 50%, rgba(80,60,30,.05) 0%, transparent 50%),
-    /* right edge shadow near fold point */
-    linear-gradient(270deg, rgba(60,45,20,.06) 0%, transparent 20%),
-    /* paper tone — elegant ivory */
-    linear-gradient(110deg,#E2DCCA 0%,#DCD6C2 30%,#D6CFBA 60%,#D0C9B2 100%);
+    /* subtle highlight */
+    radial-gradient(ellipse at 15% 20%, rgba(255,253,248,.12) 0%, transparent 50%),
+    /* fold shadow near point */
+    radial-gradient(ellipse at 80% 50%, rgba(0,0,0,.03) 0%, transparent 40%),
+    /* clean matte surface */
+    linear-gradient(110deg,#EAE6D8 0%,#E5E1D2 30%,#E0DCCC 60%,#DBD7C7 100%);
 }
 .env-flap-outer::before,.env-flap-outer::after{display:none}
-.env-flap-outer .env-flap-inner-deco{display:none}
 .env-flap-inner{
   position:absolute;inset:0;
   backface-visibility:hidden;
   transform:rotateY(180deg);
-  background:
-    /* horizontal fibers */
-    repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(100,75,40,.055) 4px, rgba(100,75,40,.055) 5px, transparent 5px, transparent 10px),
-    /* vertical fibers */
-    repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(100,75,40,.045) 5px, rgba(100,75,40,.045) 6px, transparent 6px, transparent 12px),
-    /* diagonal weave */
-    repeating-linear-gradient(35deg, transparent, transparent 7px, rgba(105,80,42,.035) 7px, rgba(105,80,42,.035) 8px),
-    radial-gradient(ellipse at 85% 50%, rgba(255,252,244,.12) 0%, transparent 40%),
-    radial-gradient(ellipse at 30% 50%, rgba(80,60,30,.04) 0%, transparent 50%),
-    linear-gradient(250deg,#E2DCCA 0%,#DCD6C2 30%,#D6CFBA 60%,#D0C9B2 100%);
   clip-path:polygon(0 0, 100% 50%, 0 100%);
+  background:
+    /* modern geometric liner — sage green botanical pattern */
+    radial-gradient(circle at 20% 20%, rgba(130,150,120,.12) 2px, transparent 2px),
+    radial-gradient(circle at 40% 35%, rgba(130,150,120,.10) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 60% 15%, rgba(130,150,120,.11) 2px, transparent 2px),
+    radial-gradient(circle at 80% 40%, rgba(130,150,120,.09) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 15% 55%, rgba(130,150,120,.10) 2px, transparent 2px),
+    radial-gradient(circle at 35% 70%, rgba(130,150,120,.12) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 55% 50%, rgba(130,150,120,.08) 2px, transparent 2px),
+    radial-gradient(circle at 75% 65%, rgba(130,150,120,.11) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 25% 85%, rgba(130,150,120,.10) 2px, transparent 2px),
+    radial-gradient(circle at 50% 80%, rgba(130,150,120,.09) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 70% 90%, rgba(130,150,120,.12) 2px, transparent 2px),
+    radial-gradient(circle at 90% 75%, rgba(130,150,120,.10) 1.5px, transparent 1.5px),
+    /* subtle geometric diamond pattern */
+    repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(130,150,120,.04) 12px, rgba(130,150,120,.04) 13px),
+    repeating-linear-gradient(-45deg, transparent, transparent 12px, rgba(130,150,120,.04) 12px, rgba(130,150,120,.04) 13px),
+    /* base — soft off-white with sage tint */
+    linear-gradient(250deg,#F2F0E8 0%,#EEECE4 40%,#EAEAE0 100%);
 }
 
-/* ── wax seal with tap text ── */
+/* ── wax seal — modern refined ── */
 .env-seal{
   position:absolute;z-index:10;
   top:50%;left:calc(50% - 1px);
   transform:translate(-50%,-50%);
-  width:clamp(120px,32vw,170px);
-  height:clamp(120px,32vw,170px);
+  width:clamp(110px,28vw,150px);
+  height:clamp(110px,28vw,150px);
   border-radius:50%;
   background:
-    /* specular highlight — elegant glow */
-    radial-gradient(ellipse at 30% 25%, rgba(255,248,225,.45) 0%, rgba(255,242,210,.15) 20%, transparent 45%),
-    /* secondary rim catch-light */
-    radial-gradient(ellipse at 65% 15%, rgba(255,238,200,.18) 0%, transparent 25%),
-    /* deep bottom-right shadow */
-    radial-gradient(ellipse at 70% 78%, rgba(40,15,10,.35) 0%, transparent 50%),
-    /* mid shadow */
-    radial-gradient(ellipse at 58% 62%, rgba(60,25,15,.14) 0%, transparent 35%),
-    /* warm wax center */
-    radial-gradient(ellipse at 42% 42%, rgba(180,60,40,.12) 0%, transparent 35%),
-    /* base — deep burgundy/crimson wax */
-    radial-gradient(circle at 44% 40%,
-      #C4796A 0%, #B86B5C 10%, #A85A4C 20%, #984C40 30%,
-      #883E34 40%, #7A3430 50%, #6C2C28 60%, #5E2422 70%,
-      #521E1C 80%, #461818 90%, #3C1414 100%);
+    /* soft highlight */
+    radial-gradient(ellipse at 32% 28%, rgba(255,248,230,.40) 0%, rgba(255,242,215,.12) 25%, transparent 50%),
+    /* deep shadow */
+    radial-gradient(ellipse at 68% 72%, rgba(30,12,8,.30) 0%, transparent 50%),
+    /* warm center */
+    radial-gradient(ellipse at 45% 45%, rgba(160,50,35,.10) 0%, transparent 40%),
+    /* base — rich wine/burgundy */
+    radial-gradient(circle at 46% 42%,
+      #B86B5C 0%, #A85A4C 15%, #964A3E 30%,
+      #843C34 50%, #72302A 70%, #602824 90%);
   box-shadow:
-    /* drop shadow */
-    0 10px 35px rgba(0,0,0,.35),
-    0 4px 14px rgba(0,0,0,.22),
-    0 1px 4px rgba(0,0,0,.14),
-    /* top-left beveled glow */
-    inset 3px 4px 10px rgba(255,220,200,.28),
-    /* bottom-right shadow bevel */
-    inset -4px -5px 12px rgba(20,8,5,.35),
-    /* ambient inner depth */
-    inset 0 0 20px rgba(60,20,15,.12),
-    /* tiny specular */
-    inset 1px 2px 3px rgba(255,240,220,.18);
+    0 8px 28px rgba(0,0,0,.25),
+    0 3px 10px rgba(0,0,0,.15),
+    inset 2px 3px 8px rgba(255,220,200,.20),
+    inset -3px -4px 10px rgba(20,8,5,.30);
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   gap:4px;
@@ -451,68 +225,32 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
   animation:sealGlow 3s ease-in-out infinite;
 }
 @keyframes sealGlow{
-  0%,100%{box-shadow:0 10px 35px rgba(0,0,0,.35),0 4px 14px rgba(0,0,0,.22),0 1px 4px rgba(0,0,0,.14),inset 3px 4px 10px rgba(255,220,200,.28),inset -4px -5px 12px rgba(20,8,5,.35),inset 0 0 20px rgba(60,20,15,.12)}
-  50%{box-shadow:0 12px 40px rgba(120,50,40,.40),0 5px 16px rgba(0,0,0,.25),0 1px 4px rgba(0,0,0,.14),inset 3px 4px 10px rgba(255,220,200,.32),inset -4px -5px 12px rgba(20,8,5,.30),inset 0 0 20px rgba(60,20,15,.10)}
+  0%,100%{box-shadow:0 8px 28px rgba(0,0,0,.25),0 3px 10px rgba(0,0,0,.15),inset 2px 3px 8px rgba(255,220,200,.20),inset -3px -4px 10px rgba(20,8,5,.30)}
+  50%{box-shadow:0 10px 32px rgba(100,40,30,.30),0 4px 12px rgba(0,0,0,.18),inset 2px 3px 8px rgba(255,220,200,.25),inset -3px -4px 10px rgba(20,8,5,.25)}
 }
-/* ring 1 — fine outer rim */
+/* single clean ring */
 .env-seal::before{
-  content:'';position:absolute;inset:4px;
+  content:'';position:absolute;inset:6px;
   border-radius:50%;
-  border:1px solid rgba(255,200,180,.18);
+  border:1px solid rgba(255,200,180,.16);
   pointer-events:none;
-  box-shadow:
-    inset 1px 1px 2px rgba(255,220,200,.10),
-    0 1px 2px rgba(0,0,0,.10);
 }
-/* ring 2 — inner groove */
 .env-seal::after{
-  content:'';position:absolute;inset:8px;
+  content:'';position:absolute;inset:12px;
   border-radius:50%;
-  border:1px solid rgba(255,200,180,.12);
-  pointer-events:none;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.06);
-}
-/* ring 3 */
-.env-seal-ring3{
-  position:absolute;inset:12px;
-  border-radius:50%;
-  border:0.5px solid rgba(255,200,180,.08);
+  border:0.5px solid rgba(255,200,180,.10);
   pointer-events:none;
 }
-/* ring 4 — subtle dashed texture ring */
-.env-seal-ring4{
-  position:absolute;inset:16px;
-  border-radius:50%;
-  border:0.5px dashed rgba(255,200,180,.10);
-  pointer-events:none;
-}
-/* inner stamped depression — concave center */
-.env-seal-ring4::after{
-  content:'';position:absolute;inset:5px;
-  border-radius:50%;
-  background:
-    /* top shadow — pressed-in edge */
-    linear-gradient(180deg, rgba(30,10,8,.20) 0%, transparent 30%),
-    /* bottom edge highlight */
-    linear-gradient(0deg, rgba(255,220,200,.14) 0%, transparent 25%),
-    /* recessed center */
-    radial-gradient(circle at 50% 50%, rgba(40,15,10,.10) 0%, transparent 55%);
-  box-shadow:
-    inset 0 2px 5px rgba(20,8,5,.22),
-    inset 0 -2px 3px rgba(255,220,200,.12),
-    inset 1px 1px 4px rgba(30,12,8,.08);
-  pointer-events:none;
-}
+/* monogram & tap text — clean modern */
 .env-seal-monogram{
   font-family:'Great Vibes',cursive;
-  font-size:clamp(1.2rem,4vw,1.9rem);
+  font-size:clamp(1.3rem,4vw,1.8rem);
   font-weight:400;
-  color:rgba(255,235,220,.90);
+  color:rgba(255,238,225,.92);
   letter-spacing:.08em;
   text-shadow:
-    0 2px 4px rgba(0,0,0,.35),
-    0 1px 1px rgba(0,0,0,.20),
-    0 -1px 1px rgba(255,230,210,.10);
+    0 2px 4px rgba(0,0,0,.30),
+    0 1px 1px rgba(0,0,0,.15);
   line-height:1;
   z-index:1;
 }
@@ -524,18 +262,18 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
 }
 .env-seal-tap{
   font-family:'Montserrat',sans-serif;
-  font-weight:300;
-  font-size:clamp(.4rem,1.3vw,.52rem);
-  letter-spacing:.2em;
+  font-weight:400;
+  font-size:clamp(.5rem,1.6vw,.65rem);
+  letter-spacing:.22em;
   text-transform:uppercase;
-  color:rgba(255,230,210,.65);
-  text-shadow:0 1px 2px rgba(0,0,0,.15);
-  animation:tapPulse 2.5s ease-in-out infinite;
+  color:rgba(255,235,218,.85);
+  text-shadow:0 1px 3px rgba(0,0,0,.25);
+  animation:tapPulse 2s ease-in-out infinite;
   z-index:1;
 }
 @keyframes tapPulse{
-  0%,100%{opacity:.45}
-  50%{opacity:.95}
+  0%,100%{opacity:.55;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.12)}
 }
 
 .intro.done{pointer-events:none;visibility:hidden}
@@ -544,20 +282,25 @@ body[dir="ltr"]{font-family:'Cormorant Garamond','Montserrat',serif}
    ║  LANGUAGE TOGGLE                              ║
    ╚═══════════════════════════════════════════════╝ */
 .lang-toggle{
-  position:absolute;top:1.5rem;left:1.5rem;z-index:200;
+  position:absolute;top:1rem;right:1rem;z-index:200;
   opacity:0;
 }
-body[dir="ltr"] .lang-toggle{left:auto;right:1.5rem}
+body[dir="rtl"] .lang-toggle{right:auto;left:1rem}
 .lang-btn{
   background:rgba(138,118,80,.06);
-  border:1px solid rgba(138,118,80,.25);
+  border:1px solid rgba(138,118,80,.20);
   color:var(--gold);
   font-family:'Montserrat',sans-serif;
-  font-weight:300;font-size:.58rem;
-  letter-spacing:.25em;text-transform:uppercase;
-  padding:.55rem 1.4rem;cursor:pointer;
+  font-weight:300;font-size:.48rem;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:.4rem 1rem;cursor:pointer;
   transition:all .5s ease;
   backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
+}
+body[dir="rtl"] .lang-btn{
+  font-family:'Noto Naskh Arabic',serif;
+  font-size:.6rem;letter-spacing:0;
+  text-transform:none;
 }
 .lang-btn:hover{
   background:var(--gold);color:#fff;border-color:var(--gold);
@@ -596,16 +339,16 @@ body[dir="ltr"] .lang-toggle{left:auto;right:1.5rem}
 
 .bismillah{
   font-family:'Aref Ruqaa',serif;
-  font-size:clamp(1.1rem,2.8vw,1.6rem);
+  font-size:clamp(1.4rem,3.5vw,2.2rem);
   color:var(--gold);
-  margin-bottom:3.5rem;opacity:0;
+  margin-bottom:2rem;opacity:0;
   letter-spacing:.04em;
 }
 .verse{
   font-family:'Amiri',serif;
   font-size:clamp(.92rem,2.2vw,1.15rem);
   color:var(--text-dim);
-  margin:0 auto 0;
+  margin:0 auto .5rem;
   line-height:2.8;max-width:520px;
   opacity:0;
   position:relative;
@@ -628,7 +371,7 @@ body[dir="ltr"] .verse{direction:rtl;font-family:'Amiri',serif}
 
 .divider{
   display:flex;align-items:center;justify-content:center;
-  gap:.8rem;margin:0 auto 1rem;opacity:0;
+  gap:.8rem;margin:0 auto 0;opacity:0;
   width:fit-content;
 }
 .divider-line{
@@ -661,9 +404,11 @@ body[dir="ltr"] .verse{direction:rtl;font-family:'Amiri',serif}
   max-width:500px;margin-left:auto;margin-right:auto;
 }
 body[dir="ltr"] .invite{
-  font-family:'Montserrat',sans-serif;
-  font-weight:200;font-size:clamp(.62rem,1.2vw,.75rem);
-  letter-spacing:.45em;text-transform:uppercase;line-height:2;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;font-size:clamp(.8rem,1.6vw,1.05rem);
+  font-style:italic;
+  letter-spacing:.12em;text-transform:none;line-height:2.2;
+  color:var(--text);
 }
 
 .names{
@@ -682,16 +427,16 @@ body[dir="ltr"] .invite{
 }
 .names-en{
   font-family:'Great Vibes',cursive;
-  font-size:clamp(1.8rem,6vw,3.5rem);
+  font-size:clamp(2.8rem,10vw,6rem);
   display:block;
-  color:var(--gold-dim);
+  color:var(--gold);
 }
 body[dir="ltr"] .names{
-  flex-direction:column-reverse;
+  flex-direction:column;
 }
 body[dir="ltr"] .names-ar{
-  color:var(--gold-dim);
-  font-size:clamp(1.8rem,6vw,3.5rem);
+  color:var(--gold);
+  font-size:clamp(2.8rem,10vw,6rem);
 }
 body[dir="ltr"] .names-en{
   color:var(--gold);
@@ -712,13 +457,48 @@ body[dir="rtl"] .hero-date{
   letter-spacing:.5em;
 }
 
-.adults{
-  display:inline-block;margin-top:3rem;
+.hero-actions{
+  display:flex;align-items:stretch;justify-content:center;
+  gap:1.5rem;margin-top:3rem;
+  opacity:0;
+  flex-wrap:wrap;
+}
+
+.hero-rsvp-btn{
+  display:inline-flex;align-items:center;justify-content:center;
   padding:1rem 3rem;
-  border:1px solid rgba(138,118,80,.12);
+  background:transparent;
+  border:1px solid var(--gold-deep);
+  color:var(--gold);
+  font-family:'Noto Naskh Arabic',serif;
+  font-weight:500;font-size:.88rem;
+  text-decoration:none;
+  cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:color .4s ease,border-color .4s ease;
+}
+body[dir="ltr"] .hero-rsvp-btn{
+  font-family:'Montserrat',sans-serif;
+  font-weight:400;font-size:.65rem;
+  letter-spacing:.35em;text-transform:uppercase;
+}
+.hero-rsvp-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .55s cubic-bezier(.25,.46,.45,.94);
+  z-index:0;
+}
+.hero-rsvp-btn:hover::before{transform:scaleX(1)}
+.hero-rsvp-btn:hover{color:#fff;border-color:var(--gold)}
+
+.adults{
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:.5rem 1.5rem;
+  border:none;
   font-family:'Aref Ruqaa',serif;
   font-size:.88rem;color:var(--gold-deep);
-  opacity:0;position:relative;
+  position:relative;
 }
 body[dir="ltr"] .adults{
   font-family:'Cormorant Garamond',serif;
@@ -735,19 +515,20 @@ body[dir="ltr"] .adults-sub{
 }
 
 .scroll-cue{
-  position:absolute;bottom:2.5rem;left:50%;
+  position:absolute;bottom:1.5rem;left:50%;
   transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
   opacity:0;
+  z-index:2;
 }
 .scroll-cue span{
   font-family:'Montserrat',sans-serif;
-  font-weight:300;font-size:.45rem;
+  font-weight:300;font-size:.42rem;
   letter-spacing:.5em;text-transform:uppercase;
   color:var(--gold-deep);
 }
 .scroll-cue-bar{
-  width:1px;height:45px;
+  width:1px;height:30px;
   background:linear-gradient(to bottom,var(--gold-deep),transparent);
   animation:scrollDown 3s ease-in-out infinite;
   transform-origin:top;
@@ -980,10 +761,10 @@ body[dir="ltr"] .footer-names{font-family:'Great Vibes',cursive}
 }
 @media(max-width:480px){
   .names-ar{font-size:clamp(2rem,11vw,3.2rem)}
-  .names-en{font-size:clamp(1.4rem,7vw,2rem)}
-  body[dir="ltr"] .names-ar{font-size:clamp(1.4rem,7vw,2rem)}
+  .names-en{font-size:clamp(2rem,11vw,3.2rem)}
+  body[dir="ltr"] .names-ar{font-size:clamp(2rem,11vw,3.2rem)}
   body[dir="ltr"] .names-en{font-size:clamp(2rem,11vw,3.2rem)}
-  .bismillah{font-size:.9rem}
+  .bismillah{font-size:1.2rem}
   .cd-val{font-size:clamp(2.2rem,14vw,3.5rem)}
   .adults{font-size:.78rem;padding:.6rem 1.4rem}
   .scroll-cue{bottom:1.2rem}
